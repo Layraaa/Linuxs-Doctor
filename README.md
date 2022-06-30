@@ -1,2 +1,2 @@
-# Linux-s-Doctor
+# Linux's Doctor
 Descripcion Linux Doctor
