@@ -1,7 +1,23 @@
 #!/bin/bash
+# Linux's Doctor: Creado por @Layraaa y @Japinper
 #
-# Creado por @Layraaa y @Japinper
+# setup.sh
 # Setup para la herramienta Linux's Doctor
+
+# Define los colores
+red="$(tput setaf 1)"
+green="$(tput setaf 2)"
+blue="$(tput setaf 4)"
+white="$(tput setaf 7)"
+lightblue="$(tput setaf 117)"
+
+# Si no existe el log, lo crea
+if [ ! -f log.txt ]
+then
+	touch log.txt
+fi
+
+# Si el usuario no tiene permisos de administrador, no puede ejecutar el script
 
 if [[ $EUID != 0 ]]
 then
@@ -11,10 +27,11 @@ then
 	echo "| |___| | | | | |_| |>  <   \__ \ | |_| | (_) | (__| || (_) | |   "
 	echo "|_____|_|_| |_|\__,_/_/\_\  |___/ |____/ \___/ \___|\__\___/|_|   "
 	echo ""
-	echo "Creado por @Layraaa y @Japinper | $(tput setaf 4)1.0"
+	echo "Creado por ${green}@Layraaa y @Japinper ${white}| ${blue}v1.1${white}"
+	echo "https://github.com/Layraaa/Linuxs-Doctor"
 	echo ""
-	echo "$(tput setaf 1)[*] Debes tener permisos de administrador para ejecutar el instalador"
-	echo "$(tput setaf 7)"
+	echo "${white}[${red}*${white}] ${lightblue}Debes tener permisos de administrador para ejecutar el instalador${white}"
+	date +"Ejecución del setup sin permisos de administrador realizada el %d/%m/%Y - %T" >> log.txt
 	exit
 fi
 
@@ -26,83 +43,121 @@ echo "| |   | | '_ \| | | \ \/ /|// __| | | | |/ _ \ / __| __/ _ \| '__|"
 echo "| |___| | | | | |_| |>  <   \__ \ | |_| | (_) | (__| || (_) | |   "
 echo "|_____|_|_| |_|\__,_/_/\_\  |___/ |____/ \___/ \___|\__\___/|_|   "
 echo ""
-echo "Creado por @Layraaa y @Japinper | $(tput setaf 4)v1.0"
+echo "Creado por ${green}@Layraaa y @Japinper ${white}| ${blue}v1.1${white}"
+echo "https://github.com/Layraaa/Linuxs-Doctor"
 echo ""
 
-### Si no existe el log, lo crea
-if [ ! -f log.txt ]
-then
-	touch log.txt
-fi
 
 date +"Ejecucion del setup realizada el %d/%m/%Y - %T" >> log.txt
 
+# Detecta el sistema operativo
 so=$(cat /etc/os-release | grep '^NAME=' | awk '{print $1}' FS=' ' | awk '{print $2}' FS='"')
 
-read -p "$(tput setaf 117)¿Quieres actualizar el sistema? $(tput setaf 2)[S/N]$(tput setaf 7) --> " sistema
-echo ""
+# Instalación del script
+echo "${lightblue}Bienvenido a la instalción de Linux's Doctor"
+read -r -p "¿Quieres actualizar el sistema? ${green}[S/N]${white} --> " sistema
 case $so in
 	Debian)
+	echo "Instalación seleccionada para Debian" >> log.txt
+	echo "" >> log.txt
+
+	# Realiza la actualización del sistema si se le ha indicado
 	if [[ $sistema == "S" ]] || [[ $sistema == "s" ]]
 	then
 		date +"Actualizacion del sistema realizada desde el setup el %d/%m/%Y - %T" >> log.txt
-		echo "$(tput setaf 7)[$(tput setaf 1)*$(tput setaf 7)]$(tput setaf 117) Actualizando el sistema..."
+		echo "${white}[${red}*${white}]${lightblue} Actualizando el sistema..."
 		apt-get update -y && apt-get upgrade -y >> log.txt 2>&1
 	fi
+
+	# Instala la herramienta
 	date +"Instalacion de las dependencias para Debian el %d/%m/%Y - %T" >> log.txt
 	echo ""
-	echo "$(tput setaf 7)[$(tput setaf 1)*$(tput setaf 7)]$(tput setaf 117) Ejecutando instalación para Debian"
-	sudo apt-get install coreutils findutils dpkg util-linux login net-tools dnsutils network-manager git make build-essential linux-headers-$(uname -r) -y >> log.txt 2>&1
+	echo "${white}[${red}*${white}]${lightblue} Ejecutando instalación para Debian"
+	sudo apt-get install coreutils findutils dpkg util-linux login net-tools dnsutils network-manager git make build-essential linux-headers-"$(uname -r)" zip -y >> log.txt 2>&1
 	;;
 	Ubuntu)
+	echo "Instalación seleccionada para Ubuntu" >> log.txt
+	echo "" >> log.txt
+
+	# Realiza la actualización del sistema si se le ha indicado
 	if [[ $sistema == "S" ]] || [[ $sistema == "s" ]]
 	then
 		date +"Actualizacion del sistema realizada desde el setup el %d/%m/%Y - %T" >> log.txt
-		echo "$(tput setaf 7)[$(tput setaf 1)*$(tput setaf 7)]$(tput setaf 117) Actualizando el sistema..."
+		echo "${white}[${red}*${white}]${lightblue} Actualizando el sistema..."
 		apt-get update -y && apt-get upgrade -y >> log.txt 2>&1
 	fi
+
+	# Instala la herramienta
 	date +"Instalacion de las dependencias para Ubuntu el %d/%m/%Y - %T" >> log.txt
 	echo ""
-	echo "$(tput setaf 7)[$(tput setaf 1)*$(tput setaf 7)]$(tput setaf 117) Ejecutando instalación para Ubuntu"
-	sudo apt-get install coreutils findutils dpkg util-linux login net-tools dnsutils network-manager git make build-essential linux-headers-$(uname -r) -y >> log.txt 2>&1
+	echo "${white}[${red}*${white}]${lightblue} Ejecutando instalación para Ubuntu"
+	sudo apt-get install coreutils findutils dpkg util-linux login net-tools dnsutils network-manager git make build-essential linux-headers-"$(uname -r)" zip -y >> log.txt 2>&1
 	;;
 	Kali)
+	echo "Instalación seleccionada para Kali" >> log.txt
+	echo "" >> log.txt
+
+	# Realiza la actualización del sistema si se le ha indicado
 	if [[ $sistema == "S" ]] || [[ $sistema == "s" ]]
 	then
 		date +"Actualizacion del sistema realizada desde el setup el %d/%m/%Y - %T" >> log.txt
-		echo "$(tput setaf 7)[$(tput setaf 1)*$(tput setaf 7)]$(tput setaf 117) Actualizando el sistema..."
+		echo "${white}[${red}*${white}]${lightblue} Actualizando el sistema..."
 		apt-get update -y && apt-get upgrade -y >> log.txt 2>&1
 	fi
+
+	# Instala la herramienta
 	date +"Instalacion de las dependencias para Kali Linux el %d/%m/%Y - %T" >> log
 	echo "".txt
-	echo "$(tput setaf 7)[$(tput setaf 1)*$(tput setaf 7)]$(tput setaf 117) Ejecutando instalación para Kali Linux"
-	sudo apt-get install coreutils findutils dpkg util-linux login runit-init net-tools dnsutils network-manager git make build-essential linux-headers-$(uname -r) -y >> log.txt 2>&1
+	echo "${white}[${red}*${white}]${lightblue} Ejecutando instalación para Kali Linux"
+	sudo apt-get install coreutils findutils dpkg util-linux login runit-init net-tools dnsutils network-manager git make build-essential linux-headers-"$(uname -r)" zip -y >> log.txt 2>&1
 	;;
 	CentOS)
+	echo "Instalación seleccionada para CentOS" >> log.txt
+	echo "" >> log.txt
+
+	# Realiza la actualización del sistema si se le ha indicado
 	if [[ $sistema == "S" ]] || [[ $sistema == "s" ]]
 	then
 		date +"Actualizacion del sistema realizada desde el setup el %d/%m/%Y - %T" >> log.txt
-		echo "$(tput setaf 7)[$(tput setaf 1)*$(tput setaf 7)]$(tput setaf 117) Actualizando el sistema..."
+		echo "${white}[${red}*${white}]${lightblue} Actualizando el sistema..."
 		yum update -y >> log.txt 2>&1
 	fi
+
+	# Instala la herramienta
 	date +"Instalacion de las dependencias para CentOS el %d/%m/%Y - %T" >> log.txt
 	echo ""
-	echo "$(tput setaf 7)[$(tput setaf 1)*$(tput setaf 7)]$(tput setaf 117) Ejecutando instalación para CentOS"
+	echo "${white}[${red}*${white}]${lightblue} Ejecutando instalación para CentOS"
 	sudo yum install coreutils findutils dpkg util-linux systemd net-tools git make build-essential kernel-devel gcc bind-utils -y >> log.txt 2>&1
-	sudo yum install linux-headers-$(uname -r) -y >> log.txt 2>&1
+	sudo yum install linux-headers-"$(uname -r)" -y >> log.txt 2>&1
 	;;
 	*)
 	echo "Esta harramienta no tiene soporte para tu sistema operativo :("
 	exit
 esac
 
-echo ""
-git clone https://github.com/504ensicsLabs/LiME >> log.txt 2>&1
-cd LiME/src/ >> log.txt 2>&1
-make >> log.txt 2>&1
-cd ..
-cd ..
-echo "$(tput setaf 7)[$(tput setaf 2)!$(tput setaf 7)] $(tput setaf 117)Instalación completada!$(tput setaf 7)"
+# Instala LiME
+
+echo "${white}[${green}!${white}] ${lightblue}Instalación de LiME!"
+echo ""	
+
+{
+	git clone https://github.com/504ensicsLabs/LiME
+	cd LiME/src/
+	make
+
+} >> log.txt 2>&1
+
+cd .. || cd ..
+
+
+# Fin de la instalación
 date +"Final del setup el %d/%m/%Y - %T" >> log.txt
 echo "" >> log.txt
-exit
+echo "${white}[${green}!${white}] ${lightblue}Instalación completada!"
+echo ""
+echo "${lightblue}¡Gracias por instalar Linux's Doctor!"
+echo "https://github.com/Layraaa/Linuxs-Doctor"
+echo "Hecho por ${green}@Layraaa y @Japinper${white}"
+echo ""
+base64 -d <<<"ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAqCgogICAgICAgICAgICAgICAgICAgICAgICAgKiAgX3xfCiAgICAgICAgICAgICAgICAgICAgICAgICAuLScgKiAnLS4gKgogICAgICAgICAgICAgICAgICAgICAgICAvICAgICAgICogXAogICAgICAgICAgICAgICAgICAgICAqICBeXl5eXnxeXl5eXgogICAgICAgICAgICAgICAgICAgICAgICAgLn4uIHwgIC5+LgogICAgICAgICAgICAgICAgICAgICAgICAvIF4gXHwgLyBeIFwKICAgICAgICAgICAgICAgICAgICAgICAofCAgIHxKL3wgICB8KQogICAgICAgICAgICAgICAgICAgICAgICdcICAgL2AiXCAgIC9gCiAgICAgICAgICAgICAtLSAnJyAtJy0nICBeYF4gICAgXmBeICAtLSAnJyAtJy0nCg=="
+echo ""

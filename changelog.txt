@@ -1,0 +1,58 @@
+v1.1
+
+Añadido la recogida de datos de:
+ - Iptables
+ - Firewalld
+ - UFW
+ - DHCP
+ - DNS
+ - FTP (vsftpd)
+ - SMB
+ - Apache
+ - MariaDB
+ - Squid
+ - SSH
+ - PHP
+ - /etc/network/interfaces
+ - lspci -vvv
+ - fdisk -l
+ - set
+ - /etc/machine-id
+ - /sys/class/dmi/id/product_uuid
+ - /etc/resolv.conf
+ - crontab -l
+ - blkid
+ - /etc/profile
+ - /etc/hosts
+ - /etc/fstab
+ - /etc/mtab
+ - /etc/group
+ - /proc/cmdline
+ - /etc/rc*.d/
+ - /etc/init.d/
+ - /etc/cron.d/
+ - /etc/cron.hourly/
+ - /etc/cron.dialy/
+ - /etc/cron.weekely/
+ - /etc/cron.monthly/
+
+
+Añadido la recogida de logs de:
+ - Firewalld
+ - UFW
+ - FTP (vsftpd)
+ - SMBD
+ - NMBD
+ - Apache
+ - MariaDB
+ - Squid
+
+Eliminación comando 'ip a' y del buffer de mensajes de núcleo
+Añadida una nueva opción para hacer comparaciones de evidencias
+Añadida una versión de ejecutar Linux's Doctor sin acceder a menús, con tan solo un comando
+Añadida la posibilidad de enviar las evidencias a un servidor FTP y/o Telegram
+Ahora crea un archivo con información del sistema operativo y del escaneo
+Ahora se almacena más información en el archivo log.txt
+Arreglado algunos fallos que daban falsos positivos en las comparaciones de evidencias
+
+v1.0
