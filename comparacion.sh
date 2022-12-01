@@ -421,6 +421,83 @@ function comparacionDebian (){
             diff "$rutauno"/archivos-de-sistema/printenv.txt "$rutadatos"/archivos-de-sistema/printenv.txt >> "$rutadatos"/reporte.txt
         fi
 
+        if [[ ! -f $rutauno/archivos-de-sistema/selinuxconfig.txt || ! -f $rutadatos/archivos-de-sistema/selinuxconfig.txt ]]
+        then
+            echo "[?] No se ha podido analizar la información sobre la configuración de selinux revise el log de la herramienta" >> "$rutadatos"/reporte.txt
+        elif [[ $(cmp "$rutauno"/archivos-de-sistema/selinuxconfig.txt "$rutadatos"/archivos-de-sistema/selinuxconfig.txt) == "" ]] >> log.txt 2>&1
+        then
+            echo "[*] La configuración de selinux no ha cambiado" >> "$rutadatos"/reporte.txt
+        else
+            echo "[!] La configuración de selinux ha cambiado" >> "$rutadatos"/reporte.txt
+            diff "$rutauno"/archivos-de-sistema/selinuxconfig.txt "$rutadatos"/archivos-de-sistema/selinuxconfig.txt >> "$rutadatos"/reporte.txt
+        fi
+
+        if [[ ! -f $rutauno/archivos-de-sistema/selinuxsemanage.txt || ! -f $rutadatos/archivos-de-sistema/selinuxsemanage.txt ]]
+        then
+            echo "[?] No se ha podido analizar la información sobre la configuración de las políticas de selinux, revise el log de la herramienta" >> "$rutadatos"/reporte.txt
+        elif [[ $(cmp "$rutauno"/archivos-de-sistema/selinuxsemanage.txt "$rutadatos"/archivos-de-sistema/selinuxsemanage.txt) == "" ]] >> log.txt 2>&1
+        then
+            echo "[*] La configuración de las políticas de selinux no han cambiado" >> "$rutadatos"/reporte.txt
+        else
+            echo "[!] La configuración de las políticas de selinux han cambiado" >> "$rutadatos"/reporte.txt
+            diff "$rutauno"/archivos-de-sistema/selinuxsemanage.txt "$rutadatos"/archivos-de-sistema/selinuxsemanage.txt >> "$rutadatos"/reporte.txt
+        fi
+
+        if [[ ! -f $rutauno/archivos-de-sistema/selinuxstatus.txt || ! -f $rutadatos/archivos-de-sistema/selinuxstatus.txt ]]
+        then
+            echo "[?] No se ha podido analizar la información sobre el archivo sestatus.conf, revise el log de la herramienta" >> "$rutadatos"/reporte.txt
+        elif [[ $(cmp "$rutauno"/archivos-de-sistema/selinuxstatus.txt "$rutadatos"/archivos-de-sistema/selinuxstatus.txt) == "" ]] >> log.txt 2>&1
+        then
+            echo "[*] El archivo sestatus.conf no ha cambiado" >> "$rutadatos"/reporte.txt
+        else
+            echo "[!] El archivo sestatus.conf ha cambiado" >> "$rutadatos"/reporte.txt
+            diff "$rutauno"/archivos-de-sistema/selinuxstatus.txt "$rutadatos"/archivos-de-sistema/selinuxstatus.txt >> "$rutadatos"/reporte.txt
+        fi
+
+        if [[ ! -f $rutauno/archivos-de-sistema/hosts_allow.txt || ! -f $rutadatos/archivos-de-sistema/hosts_allow.txt ]]
+        then
+            echo "[?] No se ha podido analizar la información sobre el archivo hosts.allow, revise el log de la herramienta" >> "$rutadatos"/reporte.txt
+        elif [[ $(cmp "$rutauno"/archivos-de-sistema/hosts_allow.txt "$rutadatos"/archivos-de-sistema/hosts_allow.txt) == "" ]] >> log.txt 2>&1
+        then
+            echo "[*] El archivo hosts.allow no ha cambiado" >> "$rutadatos"/reporte.txt
+        else
+            echo "[!] El archivo hosts.allow ha cambiado" >> "$rutadatos"/reporte.txt
+            diff "$rutauno"/archivos-de-sistema/hosts_allow.txt "$rutadatos"/archivos-de-sistema/hosts_allow.txt >> "$rutadatos"/reporte.txt
+        fi
+
+        if [[ ! -f $rutauno/archivos-de-sistema/hosts_deny.txt || ! -f $rutadatos/archivos-de-sistema/hosts_deny.txt ]]
+        then
+            echo "[?] No se ha podido analizar la información sobre el archivo hosts.deny, revise el log de la herramienta" >> "$rutadatos"/reporte.txt
+        elif [[ $(cmp "$rutauno"/archivos-de-sistema/hosts_deny.txt "$rutadatos"/archivos-de-sistema/hosts_deny.txt) == "" ]] >> log.txt 2>&1
+        then
+            echo "[*] El archivo hosts.deny no ha cambiado" >> "$rutadatos"/reporte.txt
+        else
+            echo "[!] El archivo hosts.deny ha cambiado" >> "$rutadatos"/reporte.txt
+            diff "$rutauno"/archivos-de-sistema/hosts_deny.txt "$rutadatos"/archivos-de-sistema/hosts_deny.txt >> "$rutadatos"/reporte.txt
+        fi
+
+        if [[ ! -f $rutauno/archivos-de-sistema/rsyslog.txt || ! -f $rutadatos/archivos-de-sistema/rsyslog.txt ]]
+        then
+            echo "[?] No se ha podido analizar la información sobre el archivo /proc/devices, revise el log de la herramienta" >> "$rutadatos"/reporte.txt
+        elif [[ $(cmp "$rutauno"/archivos-de-sistema/rsyslog.txt "$rutadatos"/archivos-de-sistema/rsyslog.txt) == "" ]] >> log.txt 2>&1
+        then
+            echo "[*] El archivo /proc/devices no ha cambiado" >> "$rutadatos"/reporte.txt
+        else
+            echo "[!] El archivo /proc/devices ha cambiado" >> "$rutadatos"/reporte.txt
+            diff "$rutauno"/archivos-de-sistema/rsyslog.txt "$rutadatos"/archivos-de-sistema/rsyslog.txt >> "$rutadatos"/reporte.txt
+        fi
+
+        if [[ ! -f $rutauno/archivos-de-sistema/devices.txt || ! -f $rutadatos/archivos-de-sistema/devices.txt ]]
+        then
+            echo "[?] No se ha podido analizar la información sobre el archivo hosts.deny, revise el log de la herramienta" >> "$rutadatos"/reporte.txt
+        elif [[ $(cmp "$rutauno"/archivos-de-sistema/devices.txt "$rutadatos"/archivos-de-sistema/devices.txt) == "" ]] >> log.txt 2>&1
+        then
+            echo "[*] El archivo hosts.deny no ha cambiado" >> "$rutadatos"/reporte.txt
+        else
+            echo "[!] El archivo hosts.deny ha cambiado" >> "$rutadatos"/reporte.txt
+            diff "$rutauno"/archivos-de-sistema/devices.txt "$rutadatos"/archivos-de-sistema/devices.txt >> "$rutadatos"/reporte.txt
+        fi
+
         if [[ ! -f $rutauno/archivos-de-sistema/machine_id.txt || ! -f $rutadatos/archivos-de-sistema/machine_id.txt ]]
         then
             echo "[?] No se ha podido analizar la información sobre el ID de la máquina, revise el log de la herramienta" >> "$rutadatos"/reporte.txt
@@ -1293,6 +1370,83 @@ function comparacionCentOS (){
         else
             echo "[!] Las variables del sistema han cambiado" >> "$rutadatos"/reporte.txt
             diff "$rutauno"/archivos-de-sistema/printenv.txt "$rutadatos"/archivos-de-sistema/printenv.txt >> "$rutadatos"/reporte.txt
+        fi
+
+        if [[ ! -f $rutauno/archivos-de-sistema/selinuxconfig.txt || ! -f $rutadatos/archivos-de-sistema/selinuxconfig.txt ]]
+        then
+            echo "[?] No se ha podido analizar la información sobre la configuración de selinux revise el log de la herramienta" >> "$rutadatos"/reporte.txt
+        elif [[ $(cmp "$rutauno"/archivos-de-sistema/selinuxconfig.txt "$rutadatos"/archivos-de-sistema/selinuxconfig.txt) == "" ]] >> log.txt 2>&1
+        then
+            echo "[*] La configuración de selinux no ha cambiado" >> "$rutadatos"/reporte.txt
+        else
+            echo "[!] La configuración de selinux ha cambiado" >> "$rutadatos"/reporte.txt
+            diff "$rutauno"/archivos-de-sistema/selinuxconfig.txt "$rutadatos"/archivos-de-sistema/selinuxconfig.txt >> "$rutadatos"/reporte.txt
+        fi
+
+        if [[ ! -f $rutauno/archivos-de-sistema/selinuxsemanage.txt || ! -f $rutadatos/archivos-de-sistema/selinuxsemanage.txt ]]
+        then
+            echo "[?] No se ha podido analizar la información sobre la configuración de las políticas de selinux, revise el log de la herramienta" >> "$rutadatos"/reporte.txt
+        elif [[ $(cmp "$rutauno"/archivos-de-sistema/selinuxsemanage.txt "$rutadatos"/archivos-de-sistema/selinuxsemanage.txt) == "" ]] >> log.txt 2>&1
+        then
+            echo "[*] La configuración de las políticas de selinux no han cambiado" >> "$rutadatos"/reporte.txt
+        else
+            echo "[!] La configuración de las políticas de selinux han cambiado" >> "$rutadatos"/reporte.txt
+            diff "$rutauno"/archivos-de-sistema/selinuxsemanage.txt "$rutadatos"/archivos-de-sistema/selinuxsemanage.txt >> "$rutadatos"/reporte.txt
+        fi
+
+        if [[ ! -f $rutauno/archivos-de-sistema/selinuxstatus.txt || ! -f $rutadatos/archivos-de-sistema/selinuxstatus.txt ]]
+        then
+            echo "[?] No se ha podido analizar la información sobre el archivo sestatus.conf, revise el log de la herramienta" >> "$rutadatos"/reporte.txt
+        elif [[ $(cmp "$rutauno"/archivos-de-sistema/selinuxstatus.txt "$rutadatos"/archivos-de-sistema/selinuxstatus.txt) == "" ]] >> log.txt 2>&1
+        then
+            echo "[*] El archivo sestatus.conf no ha cambiado" >> "$rutadatos"/reporte.txt
+        else
+            echo "[!] El archivo sestatus.conf ha cambiado" >> "$rutadatos"/reporte.txt
+            diff "$rutauno"/archivos-de-sistema/selinuxstatus.txt "$rutadatos"/archivos-de-sistema/selinuxstatus.txt >> "$rutadatos"/reporte.txt
+        fi
+
+        if [[ ! -f $rutauno/archivos-de-sistema/hosts_allow.txt || ! -f $rutadatos/archivos-de-sistema/hosts_allow.txt ]]
+        then
+            echo "[?] No se ha podido analizar la información sobre el archivo hosts.allow, revise el log de la herramienta" >> "$rutadatos"/reporte.txt
+        elif [[ $(cmp "$rutauno"/archivos-de-sistema/hosts_allow.txt "$rutadatos"/archivos-de-sistema/hosts_allow.txt) == "" ]] >> log.txt 2>&1
+        then
+            echo "[*] El archivo hosts.allow no ha cambiado" >> "$rutadatos"/reporte.txt
+        else
+            echo "[!] El archivo hosts.allow ha cambiado" >> "$rutadatos"/reporte.txt
+            diff "$rutauno"/archivos-de-sistema/hosts_allow.txt "$rutadatos"/archivos-de-sistema/hosts_allow.txt >> "$rutadatos"/reporte.txt
+        fi
+
+        if [[ ! -f $rutauno/archivos-de-sistema/hosts_deny.txt || ! -f $rutadatos/archivos-de-sistema/hosts_deny.txt ]]
+        then
+            echo "[?] No se ha podido analizar la información sobre el archivo hosts.deny, revise el log de la herramienta" >> "$rutadatos"/reporte.txt
+        elif [[ $(cmp "$rutauno"/archivos-de-sistema/hosts_deny.txt "$rutadatos"/archivos-de-sistema/hosts_deny.txt) == "" ]] >> log.txt 2>&1
+        then
+            echo "[*] El archivo hosts.deny no ha cambiado" >> "$rutadatos"/reporte.txt
+        else
+            echo "[!] El archivo hosts.deny ha cambiado" >> "$rutadatos"/reporte.txt
+            diff "$rutauno"/archivos-de-sistema/hosts_deny.txt "$rutadatos"/archivos-de-sistema/hosts_deny.txt >> "$rutadatos"/reporte.txt
+        fi
+
+        if [[ ! -f $rutauno/archivos-de-sistema/rsyslog.txt || ! -f $rutadatos/archivos-de-sistema/rsyslog.txt ]]
+        then
+            echo "[?] No se ha podido analizar la información sobre el archivo /proc/devices, revise el log de la herramienta" >> "$rutadatos"/reporte.txt
+        elif [[ $(cmp "$rutauno"/archivos-de-sistema/rsyslog.txt "$rutadatos"/archivos-de-sistema/rsyslog.txt) == "" ]] >> log.txt 2>&1
+        then
+            echo "[*] El archivo /proc/devices no ha cambiado" >> "$rutadatos"/reporte.txt
+        else
+            echo "[!] El archivo /proc/devices ha cambiado" >> "$rutadatos"/reporte.txt
+            diff "$rutauno"/archivos-de-sistema/rsyslog.txt "$rutadatos"/archivos-de-sistema/rsyslog.txt >> "$rutadatos"/reporte.txt
+        fi
+
+        if [[ ! -f $rutauno/archivos-de-sistema/devices.txt || ! -f $rutadatos/archivos-de-sistema/devices.txt ]]
+        then
+            echo "[?] No se ha podido analizar la información sobre el archivo hosts.deny, revise el log de la herramienta" >> "$rutadatos"/reporte.txt
+        elif [[ $(cmp "$rutauno"/archivos-de-sistema/devices.txt "$rutadatos"/archivos-de-sistema/devices.txt) == "" ]] >> log.txt 2>&1
+        then
+            echo "[*] El archivo hosts.deny no ha cambiado" >> "$rutadatos"/reporte.txt
+        else
+            echo "[!] El archivo hosts.deny ha cambiado" >> "$rutadatos"/reporte.txt
+            diff "$rutauno"/archivos-de-sistema/devices.txt "$rutadatos"/archivos-de-sistema/devices.txt >> "$rutadatos"/reporte.txt
         fi
 
         if [[ ! -f $rutauno/archivos-de-sistema/machine_id.txt || ! -f $rutadatos/archivos-de-sistema/machine_id.txt ]]

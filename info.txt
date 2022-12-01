@@ -49,6 +49,13 @@ Linux's Doctor genera los siguientes archivos. Algunos archivos puede que no se 
 		- lspci.txt: Archivo que muestra información de los buses PCI y dispositivos del sistema
 		- fdisk.txt: Archivo que muestra información de las particiones de los discos duros del sistema
 		- printenv.txt: Archivo que muestra las variables del sistema
+		- selinuxconfig.txt: Archivo que muestra la configuración de SeLinux
+		- selinuxsemanage.txt: Archivo que muestra la configuración de las políticas de SeLinux
+		- selinuxstatus.txt: Archivo que muestra la configuración del comando sestatus
+		- hosts_allow.txt: Archivo que muestra los hosts permitidos para reglas con una accion de entrada
+		- hosts_deny.txt: Archivo que muestra los hosts denegados para reglas con una accion de entrada
+		- rsyslog.txt: Archivo que muestra la configuración de rsyslog
+		- devices.txt: Archivo que muestra información sobre los dispositivos del sistema
 		- machine_id.txt: Archivo que muestra el ID de la máquina
 		- product_uuid.txt: Archivo que muestra el UUID de la máquina
 		- resolv.txt: Archivo que muestra el DNS resolver

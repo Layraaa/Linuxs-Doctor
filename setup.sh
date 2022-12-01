@@ -27,7 +27,7 @@ then
 	echo "| |___| | | | | |_| |>  <   \__ \ | |_| | (_) | (__| || (_) | |   "
 	echo "|_____|_|_| |_|\__,_/_/\_\  |___/ |____/ \___/ \___|\__\___/|_|   "
 	echo ""
-	echo "Creado por ${green}@Layraaa y @Japinper ${white}| ${blue}v1.1${white}"
+	echo "Creado por ${green}@Layraaa y @Japinper ${white}| ${blue}v1.1.1${white}"
 	echo "https://github.com/Layraaa/Linuxs-Doctor"
 	echo ""
 	echo "${white}[${red}*${white}] ${lightblue}Debes tener permisos de administrador para ejecutar el instalador${white}"
@@ -43,7 +43,7 @@ echo "| |   | | '_ \| | | \ \/ /|// __| | | | |/ _ \ / __| __/ _ \| '__|"
 echo "| |___| | | | | |_| |>  <   \__ \ | |_| | (_) | (__| || (_) | |   "
 echo "|_____|_|_| |_|\__,_/_/\_\  |___/ |____/ \___/ \___|\__\___/|_|   "
 echo ""
-echo "Creado por ${green}@Layraaa y @Japinper ${white}| ${blue}v1.1${white}"
+echo "Creado por ${green}@Layraaa y @Japinper ${white}| ${blue}v1.1.1${white}"
 echo "https://github.com/Layraaa/Linuxs-Doctor"
 echo ""
 
@@ -73,7 +73,7 @@ case $so in
 	date +"Instalacion de las dependencias para Debian el %d/%m/%Y - %T" >> log.txt
 	echo ""
 	echo "${white}[${red}*${white}]${lightblue} Ejecutando instalación para Debian"
-	sudo apt-get install coreutils findutils dpkg util-linux login net-tools dnsutils network-manager git make build-essential linux-headers-"$(uname -r)" zip -y >> log.txt 2>&1
+	sudo apt-get install coreutils findutils dpkg util-linux login net-tools dnsutils network-manager git make build-essential linux-headers-"$(uname -r)" zip lsof -y >> log.txt 2>&1
 	;;
 	Ubuntu)
 	echo "Instalación seleccionada para Ubuntu" >> log.txt
@@ -91,7 +91,7 @@ case $so in
 	date +"Instalacion de las dependencias para Ubuntu el %d/%m/%Y - %T" >> log.txt
 	echo ""
 	echo "${white}[${red}*${white}]${lightblue} Ejecutando instalación para Ubuntu"
-	sudo apt-get install coreutils findutils dpkg util-linux login net-tools dnsutils network-manager git make build-essential linux-headers-"$(uname -r)" zip -y >> log.txt 2>&1
+	sudo apt-get install coreutils findutils dpkg util-linux login net-tools dnsutils network-manager git make build-essential linux-headers-"$(uname -r)" zip lsof -y >> log.txt 2>&1
 	;;
 	Kali)
 	echo "Instalación seleccionada para Kali" >> log.txt
@@ -109,7 +109,7 @@ case $so in
 	date +"Instalacion de las dependencias para Kali Linux el %d/%m/%Y - %T" >> log
 	echo "".txt
 	echo "${white}[${red}*${white}]${lightblue} Ejecutando instalación para Kali Linux"
-	sudo apt-get install coreutils findutils dpkg util-linux login runit-init net-tools dnsutils network-manager git make build-essential linux-headers-"$(uname -r)" zip -y >> log.txt 2>&1
+	sudo apt-get install coreutils findutils dpkg util-linux login runit-init net-tools dnsutils network-manager git make build-essential linux-headers-"$(uname -r)" zip lsof -y >> log.txt 2>&1
 	;;
 	CentOS)
 	echo "Instalación seleccionada para CentOS" >> log.txt
@@ -127,7 +127,7 @@ case $so in
 	date +"Instalacion de las dependencias para CentOS el %d/%m/%Y - %T" >> log.txt
 	echo ""
 	echo "${white}[${red}*${white}]${lightblue} Ejecutando instalación para CentOS"
-	sudo yum install coreutils findutils dpkg util-linux systemd net-tools git make build-essential kernel-devel gcc bind-utils -y >> log.txt 2>&1
+	sudo yum install coreutils findutils dpkg util-linux systemd net-tools git make build-essential kernel-devel gcc bind-utils lsof -y >> log.txt 2>&1
 	sudo yum install linux-headers-"$(uname -r)" -y >> log.txt 2>&1
 	;;
 	*)

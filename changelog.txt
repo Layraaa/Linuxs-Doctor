@@ -1,3 +1,15 @@
+v1.1.1
+
+Añadido la recogida de archivos dinámicos
+Añadida la recogida de los siguientes archivos:
+- /etc/selinux/config
+- /etc/selinux/semanage.conf
+- /etc/sestatus.conf
+- /etc/hosts.allow
+- /etc/hosts.deny
+- /etc/rsyslog.conf
+- /proc/devices
+
 v1.1
 
 Añadido la recogida de datos de:

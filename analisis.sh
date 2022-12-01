@@ -78,6 +78,13 @@ function recogidadatosDebian (){
 	lspci -vvv > "$rutadatos"/archivos-de-sistema/lspci.txt
 	fdisk -l > "$rutadatos"/archivos-de-sistema/fdisk.txt
 	printenv > "$rutadatos"/archivos-de-sistema/printenv.txt
+	cat /etc/selinux/config > "$rutadatos"/archivos-de-sistema/selinuxconfig.txt
+	cat /etc/selinux/semanage.conf > "$rutadatos"/archivos-de-sistema/selinuxsemanage.txt
+	cat /etc/sestatus.conf > "$rutadatos"/archivos-de-sistema/selinuxstatus.txt
+	cat /etc/hosts.allow > "$rutadatos"/archivos-de-sistema/hosts_allow.txt
+	cat /etc/hosts.deny > "$rutadatos"/archivos-de-sistema/hosts_deny.txt
+	cat /etc/rsyslog.conf > "$rutadatos"/archivos-de-sistema/rsyslog.txt
+	cat /proc/devices > "$rutadatos"/archivos-de-sistema/devices.txt
 	cat /etc/machine-id > "$rutadatos"/archivos-de-sistema/machine_id.txt
 	cat /sys/class/dmi/id/product_uuid > "$rutadatos"/archivos-de-sistema/product_uuid.txt
 	cat /etc/resolv.conf > "$rutadatos"/archivos-de-sistema/resolv.txt
@@ -453,6 +460,66 @@ function recogidadatosDebian (){
 	echo "${white}[${green}!${white}]${lightblue} Listo..."
 	echo "${white}"
 
+	# Recogiendo archivos dinámicos
+	echo "${white}[${red}*${white}]${lightblue} Recogiendo archivos dinámicos..."
+	mkdir "$rutadatos"/archivos-dinamicos >> log.txt 2>&1
+	ls -lrtaRh /etc >> "$rutadatos"/archivos-dinamicos/lsetc.txt 2>> log.txt
+	ls -lrtaRh /dev >> "$rutadatos"/archivos-dinamicos/lsdev.txt 2>> log.txt
+	ls -lrtaRh /bin >> "$rutadatos"/archivos-dinamicos/lsbin.txt 2>> log.txt
+	ls -lrtaRh /sbin >> "$rutadatos"/archivos-dinamicos/lssbin.txt 2>> log.txt
+	ls -lrtaRh /usr/bin >> "$rutadatos"/archivos-dinamicos/lsusrbin.txt 2>> log.txt
+	ls -lrtaRh /usr/sbin >> "$rutadatos"/archivos-dinamicos/lsusrsbin.txt 2>> log.txt
+	netstat -tupan >> "$rutadatos"/archivos-dinamicos/netstat.txt 2>> log.txt
+	last >> "$rutadatos"/archivos-dinamicos/last.txt 2>> log.txt
+	w >> "$rutadatos"/archivos-dinamicos/w.txt 2>> log.txt
+	dmesg >> "$rutadatos"/archivos-dinamicos/dmesg.txt 2>> log.txt
+	uname -a >> "$rutadatos"/archivos-dinamicos/uname.txt 2>> log.txt
+	lsmod >> "$rutadatos"/archivos-dinamicos/lsmod.txt 2>> log.txt
+	ps axufwww >> "$rutadatos"/archivos-dinamicos/ps.txt 2>> log.txt
+	date >> "$rutadatos"/archivos-dinamicos/date.txt 2>> log.txt
+	dpkg -l >> "$rutadatos"/archivos-dinamicos/dpkg.txt  2>> log.txt
+	free -m >> "$rutadatos"/archivos-dinamicos/free.txt 2>> log.txt
+	lsof >> "$rutadatos"/archivos-dinamicos/lsof.txt 2> /dev/null
+	lsof -i >> "$rutadatos"/archivos-dinamicos/lsofi.txt 2>> log.txt
+
+	cat /var/log/btmp >> "$rutadatos"/archivos-dinamicos/btmp.txt 2>> log.txt
+	cat /var/log/wtmp >> "$rutadatos"/archivos-dinamicos/wtmp.txt 2>> log.txt
+	cat /etc/os-release >> "$rutadatos"/archivos-dinamicos/os-release.txt 2>> log.txt
+	cat /proc/version >> "$rutadatos"/archivos-dinamicos/version.txt 2>> log.txt
+	cat /proc/cpuinfo >> "$rutadatos"/archivos-dinamicos/cpuinfo.txt 2>> log.txt
+	cat /proc/swaps >> "$rutadatos"/archivos-dinamicos/swaps.txt 2>> log.txt
+	cat /proc/partitions >> "$rutadatos"/archivos-dinamicos/partitions.txt 2>> log.txt
+	cat /proc/self/mounts >> "$rutadatos"/archivos-dinamicos/mounts.txt 2>> log.txt
+	cat /proc/meminfo >> "$rutadatos"/archivos-dinamicos/meminfo.txt 2>> log.txt
+	cat /proc/uptime >> "$rutadatos"/archivos-dinamicos/uptime.txt 2>> log.txt
+	cat /proc/modules >> "$rutadatos"/archivos-dinamicos/modules.txt 2>> log.txt
+	cat /proc/vmstat >> "$rutadatos"/archivos-dinamicos/vmstat.txt 2>> log.txt
+
+	ls -lah /proc/[0-9]* >> "$rutadatos"/archivos-dinamicos/dataprocess.txt 2> /dev/null
+	ls -lah /proc/[0-9]*/exe >> "$rutadatos"/archivos-dinamicos/exe.txt 2> /dev/null
+	ls -lah /etc/init.d/ >> "$rutadatos"/archivos-dinamicos/initd.txt 2>> log.txt
+
+	mkdir "$rutadatos"/archivos-dinamicos/proc 2>> log.txt
+
+	for i in /proc/[0-9]*
+	do
+		mkdir "$rutadatos"/archivos-dinamicos/proc/"$i" 2>> log.txt
+		cat "$i"/cgroup >> "$rutadatos"/archivos-dinamicos/proc/"$i"/cgroup.txt 2>> log.txt
+		cat "$i"/cmdline >> "$rutadatos"/archivos-dinamicos/proc/"$i"/cmdline.txt 2>> log.txt
+		cat "$i"/comm >> "$rutadatos"/archivos-dinamicos/proc/"$i"/comm.txt 2>> log.txt
+		cat "$i"/environ >> "$rutadatos"/archivos-dinamicos/proc/"$i"/environ.txt 2>> log.txt
+		cat "$i"/io >> "$rutadatos"/archivos-dinamicos/proc/"$i"/io.txt 2>> log.txt
+		cat "$i"/limits >> "$rutadatos"/archivos-dinamicos/proc/"$i"/limits.txt 2>> log.txt
+		cat "$i"/maps >> "$rutadatos"/archivos-dinamicos/proc/"$i"/maps.txt 2>> log.txt
+		cat "$i"/mountinfo >> "$rutadatos"/archivos-dinamicos/proc/"$i"/mountinfo.txt 2>> log.txt
+		cat "$i"/numa_maps >> "$rutadatos"/archivos-dinamicos/proc/"$i"/numa_maps.txt 2>> log.txt
+		cat "$i"/sched >> "$rutadatos"/archivos-dinamicos/proc/"$i"/sched.txt 2>> log.txt
+		cat "$i"/status >> "$rutadatos"/archivos-dinamicos/proc/"$i"/status.txt 2>> log.txt
+	done
+
+	echo "${white}[${green}!${white}]${lightblue} Listo..."
+	echo "${white}"
+
 	# Volcado de RAM
 	if [[ $ram == "S" ]] || [[ $ram == "s" ]]
 	then
@@ -528,6 +595,13 @@ function recogidadatosCentOS (){
 	lspci -vvv > "$rutadatos"/archivos-de-sistema/lspci.txt
 	fdisk -l > "$rutadatos"/archivos-de-sistema/fdisk.txt
 	printenv > "$rutadatos"/archivos-de-sistema/printenv.txt
+	cat /etc/selinux/config > "$rutadatos"/archivos-de-sistema/selinuxconfig.txt
+	cat /etc/selinux/semanage.conf > "$rutadatos"/archivos-de-sistema/selinuxsemanage.txt
+	cat /etc/sestatus.conf > "$rutadatos"/archivos-de-sistema/selinuxstatus.txt
+	cat /etc/hosts.allow > "$rutadatos"/archivos-de-sistema/hosts_allow.txt
+	cat /etc/hosts.deny > "$rutadatos"/archivos-de-sistema/hosts_deny.txt
+	cat /etc/rsyslog.conf > "$rutadatos"/archivos-de-sistema/rsyslog.txt
+	cat /proc/devices > "$rutadatos"/archivos-de-sistema/devices.txt
 	cat /etc/machine-id > "$rutadatos"/archivos-de-sistema/machine_id.txt
 	cat /sys/class/dmi/id/product_uuid > "$rutadatos"/archivos-de-sistema/product_uuid.txt
 	cat /etc/resolv.conf > "$rutadatos"/archivos-de-sistema/resolv.txt
@@ -851,6 +925,66 @@ function recogidadatosCentOS (){
 			echo "" >> "$rutadatos"/logs-servicios/httpd/logfile_access.log.txt
 		done
 	fi
+
+	echo "${white}[${green}!${white}]${lightblue} Listo..."
+	echo "${white}"
+
+	# Recogiendo archivos dinámicos
+	echo "${white}[${red}*${white}]${lightblue} Recogiendo archivos dinámicos..."
+	mkdir "$rutadatos"/archivos-dinamicos >> log.txt 2>&1
+	ls -lrtaRh /etc >> "$rutadatos"/archivos-dinamicos/lsetc.txt 2>> log.txt
+	ls -lrtaRh /dev >> "$rutadatos"/archivos-dinamicos/lsdev.txt 2>> log.txt
+	ls -lrtaRh /bin >> "$rutadatos"/archivos-dinamicos/lsbin.txt 2>> log.txt
+	ls -lrtaRh /sbin >> "$rutadatos"/archivos-dinamicos/lssbin.txt 2>> log.txt
+	ls -lrtaRh /usr/bin >> "$rutadatos"/archivos-dinamicos/lsusrbin.txt 2>> log.txt
+	ls -lrtaRh /usr/sbin >> "$rutadatos"/archivos-dinamicos/lsusrsbin.txt 2>> log.txt
+	netstat -tupan >> "$rutadatos"/archivos-dinamicos/netstat.txt 2>> log.txt
+	last >> "$rutadatos"/archivos-dinamicos/last.txt 2>> log.txt
+	w >> "$rutadatos"/archivos-dinamicos/w.txt 2>> log.txt
+	dmesg >> "$rutadatos"/archivos-dinamicos/dmesg.txt 2>> log.txt
+	uname -a >> "$rutadatos"/archivos-dinamicos/uname.txt 2>> log.txt
+	lsmod >> "$rutadatos"/archivos-dinamicos/lsmod.txt 2>> log.txt
+	ps axufwww >> "$rutadatos"/archivos-dinamicos/ps.txt 2>> log.txt
+	date >> "$rutadatos"/archivos-dinamicos/date.txt 2>> log.txt
+	yum list installed >> "$rutadatos"/archivos-dinamicos/yum.txt  2>> log.txt
+	free -m >> "$rutadatos"/archivos-dinamicos/free.txt 2>> log.txt
+	lsof >> "$rutadatos"/archivos-dinamicos/lsof.txt 2> /dev/null
+	lsof -i >> "$rutadatos"/archivos-dinamicos/lsofi.txt 2>> log.txt
+
+	cat /var/log/btmp >> "$rutadatos"/archivos-dinamicos/btmp.txt 2>> log.txt
+	cat /var/log/wtmp >> "$rutadatos"/archivos-dinamicos/wtmp.txt 2>> log.txt
+	cat /etc/os-release >> "$rutadatos"/archivos-dinamicos/os-release.txt 2>> log.txt
+	cat /proc/version >> "$rutadatos"/archivos-dinamicos/version.txt 2>> log.txt
+	cat /proc/cpuinfo >> "$rutadatos"/archivos-dinamicos/cpuinfo.txt 2>> log.txt
+	cat /proc/swaps >> "$rutadatos"/archivos-dinamicos/swaps.txt 2>> log.txt
+	cat /proc/partitions >> "$rutadatos"/archivos-dinamicos/partitions.txt 2>> log.txt
+	cat /proc/self/mounts >> "$rutadatos"/archivos-dinamicos/mounts.txt 2>> log.txt
+	cat /proc/meminfo >> "$rutadatos"/archivos-dinamicos/meminfo.txt 2>> log.txt
+	cat /proc/uptime >> "$rutadatos"/archivos-dinamicos/uptime.txt 2>> log.txt
+	cat /proc/modules >> "$rutadatos"/archivos-dinamicos/modules.txt 2>> log.txt
+	cat /proc/vmstat >> "$rutadatos"/archivos-dinamicos/vmstat.txt 2>> log.txt
+
+	ls -lah /proc/[0-9]* >> "$rutadatos"/archivos-dinamicos/dataprocess.txt 2> /dev/null
+	ls -lah /proc/[0-9]*/exe >> "$rutadatos"/archivos-dinamicos/exe.txt 2> /dev/null
+	ls -lah /etc/init.d/ >> "$rutadatos"/archivos-dinamicos/initd.txt 2>> log.txt
+
+	mkdir "$rutadatos"/archivos-dinamicos/proc 2>> log.txt
+
+	for i in /proc/[0-9]*
+	do
+		mkdir "$rutadatos"/archivos-dinamicos/proc/"$i" 2>> log.txt
+		cat "$i"/cgroup >> "$rutadatos"/archivos-dinamicos/proc/"$i"/cgroup.txt 2>> log.txt
+		cat "$i"/cmdline >> "$rutadatos"/archivos-dinamicos/proc/"$i"/cmdline.txt 2>> log.txt
+		cat "$i"/comm >> "$rutadatos"/archivos-dinamicos/proc/"$i"/comm.txt 2>> log.txt
+		cat "$i"/environ >> "$rutadatos"/archivos-dinamicos/proc/"$i"/environ.txt 2>> log.txt
+		cat "$i"/io >> "$rutadatos"/archivos-dinamicos/proc/"$i"/io.txt 2>> log.txt
+		cat "$i"/limits >> "$rutadatos"/archivos-dinamicos/proc/"$i"/limits.txt 2>> log.txt
+		cat "$i"/maps >> "$rutadatos"/archivos-dinamicos/proc/"$i"/maps.txt 2>> log.txt
+		cat "$i"/mountinfo >> "$rutadatos"/archivos-dinamicos/proc/"$i"/mountinfo.txt 2>> log.txt
+		cat "$i"/numa_maps >> "$rutadatos"/archivos-dinamicos/proc/"$i"/numa_maps.txt 2>> log.txt
+		cat "$i"/sched >> "$rutadatos"/archivos-dinamicos/proc/"$i"/sched.txt 2>> log.txt
+		cat "$i"/status >> "$rutadatos"/archivos-dinamicos/proc/"$i"/status.txt 2>> log.txt
+	done
 
 	echo "${white}[${green}!${white}]${lightblue} Listo..."
 	echo "${white}"
