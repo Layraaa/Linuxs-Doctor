@@ -266,7 +266,7 @@ function enviarreportetelegram (){
             -H 'Content-Type: application/json' \
             -d '{"chat_id": "$telegramid", "text": "This is a test from curl", "disable_notification": true}' \
             "$(base64 -d <<<"aHR0cHM6Ly9hcGkudGVsZWdyYW0ub3JnL2JvdDU3MDAyOTIxNzE6QUFFLWZodl9LLTltMndtTFM4cDlPeFZxZjljZFJRUG1KVWsvc2VuZE1lc3NhZ2U=")"
-        curl -F document=@"/home/user/Documentos/scripts/test.html" "$(base64 -d <<<"aHR0cHM6Ly9hcGkudGVsZWdyYW0ub3JnL2JvdDU3MDAyOTIxNzE6QUFFLWZodl9LLTltMndtTFM4cDlPeFZxZjljZFJRUG1KVWsvc2VuZERvY3VtZW50")"?chat_id="$telegramid"
+        curl -F document=@"evidencias-$date.zip" "$(base64 -d <<<"aHR0cHM6Ly9hcGkudGVsZWdyYW0ub3JnL2JvdDU3MDAyOTIxNzE6QUFFLWZodl9LLTltMndtTFM4cDlPeFZxZjljZFJRUG1KVWsvc2VuZERvY3VtZW50")"?chat_id="$telegramid"
         rm -rf evidencias-"$date".zip >> log.txt
         echo ""
 		echo "${lightblue}Completado!${white}"
