@@ -125,7 +125,7 @@ function reportetelegram (){
             then
                 preguntardatostelegram
                 break
-            elif [[ $telegram == "N" ]] || [[ $ftp == "n" ]]
+            elif [[ $telegram == "N" ]] || [[ $telegram == "n" ]]
             then
                 break
             else

@@ -20,7 +20,7 @@ function analisis (){
 	echo "Version del sistema operativo: $(uname -r)" >> "$rutadatos"/analisis.txt
 	echo "Direccion IP: $(hostname -I)" >> "$rutadatos"/analisis.txt
 	echo "" >> "$rutadatos"/analisis.txt
-	echo "Version de Linux's Doctor: 1.1" >> "$rutadatos"/analisis.txt
+	echo "Version de Linux's Doctor: 1.1.1" >> "$rutadatos"/analisis.txt
 	echo "Tipo de análisis: $linuxsdoctor" >> "$rutadatos"/analisis.txt
 	date +"Hora de Inicio: %T" >> "$rutadatos"/analisis.txt
 	echo "Hora de Finalizacion: -" >> "$rutadatos"/analisis.txt

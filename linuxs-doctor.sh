@@ -1,7 +1,7 @@
 #!/bin/bash
 # Linux's Doctor: Creado por @Layraa y @Japinper
 # 
-# linuxs-doctor-new.sh - terminal version
+# linuxs-doctor-new.sh
 # Script que realiza las mismas funciones que linuxs-doctor.sh,
 # pero preparado para ser ejecutado en modo terminal
 
@@ -230,7 +230,6 @@ classic) # Modo clasico
 					then
 						# Si termina en /, la elimina
 						rutareporte=$(${rutareporte%?})
-
 					fi
 					break
 				else
@@ -534,6 +533,7 @@ terminal) # Modo terminal
 			# Comprueba si se ha rellanado el valor
 			echo "${lightblue}No has especificado la ruta"
 			echo "bash linuxs-doctor.sh -l terminal -r /ejemplo/de/ruta${white}"
+			exit
         elif [ ! -d "$rutareporte" ]
         then
             # Comprueba si la ruta especificada existe
@@ -605,6 +605,7 @@ terminal) # Modo terminal
 			# Comprueba si se ha rellanado el valor
 			echo "${lightblue}No has rellenado de la ruta"
 			echo "bash linuxs-doctor.sh -l classic|terminal -r /ejemplo/de/ruta -e /ejemplo/de/ruta${white}"
+			exit
         elif [ ! -d "$rutareporte" ]
         then
             # Comprueba si la ruta especificada existe
@@ -621,7 +622,8 @@ terminal) # Modo terminal
 			# Comprueba si se ha rellanado el valor
 			echo "${lightblue}No has rellenado de la ruta"
 			echo "bash linuxs-doctor.sh -l classic|terminal -r /ejemplo/de/ruta -e /ejemplo/de/ruta${white}"
-        elif [ ! -d $rutauno ]
+			exit
+        elif [ ! -d "$rutauno" ]
         then
             # Comprueba si la ruta especificada existe
             echo "${red}La ruta especificada no existe ($rutauno)${white}"
@@ -664,7 +666,7 @@ terminal) # Modo terminal
 		# Comprobaciones sobre los archivos analisis.txt
         if [[ ! -f $rutauno/analisis.txt || ! -f $rutadatos/analisis.txt ]]
         then
-            echo "No existe el archivo analisis.txt"
+            echo "${red}No existe el archivo analisis.txt${white}"
             exit
         elif [[ $(sed '4q;d' "$rutauno"/analisis.txt | awk '{ gsub(/Sistema operativo: /,""); print }') != $(sed '4q;d' "$rutadatos"/analisis.txt | awk '{ gsub(/Sistema operativo: /,""); print }') ]]
         then
@@ -729,6 +731,7 @@ terminal) # Modo terminal
 			# Comprueba si se ha rellanado el valor
 			echo "${lightblue}No has rellenado de la ruta"
 			echo "bash linuxs-doctor.sh -l classic|terminal -r /ejemplo/de/ruta -e /ejemplo/de/ruta${white}"
+			exit
         elif [ ! -d "$rutadatos" ]
         then
             # Comprueba si la ruta especificada existe
@@ -745,6 +748,7 @@ terminal) # Modo terminal
 			# Comprueba si se ha rellanado el valor
 			echo "${lightblue}No has rellenado de la ruta"
 			echo "bash linuxs-doctor.sh -l classic|terminal -r /ejemplo/de/ruta -e /ejemplo/de/ruta${white}"
+			exit
         elif [ ! -d "$rutauno" ]
         then
             # Comprueba si la ruta especificada existe
