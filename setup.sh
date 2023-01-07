@@ -20,6 +20,7 @@ fi
 # If user doesn't have admin permisssions, end the script
 if [[ $EUID != 0 ]]
 then
+	echo "${white}"
 	echo " _     _                           ____             _             "
 	echo "| |   (_)_ __  _   ___  __() ___  |  _ \  ___   ___| |_ ___  _ __ "
 	echo "| |   | | '_ \| | | \ \/ /|// __| | | | |/ _ \ / __| __/ _ \| '__|"
@@ -36,6 +37,7 @@ fi
 
 clear
 
+echo "${white}"
 echo " _     _                           ____             _             "
 echo "| |   (_)_ __  _   ___  __() ___  |  _ \  ___   ___| |_ ___  _ __ "
 echo "| |   | | '_ \| | | \ \/ /|// __| | | | |/ _ \ / __| __/ _ \| '__|"
