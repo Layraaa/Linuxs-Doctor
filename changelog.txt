@@ -1,0 +1,79 @@
+v1.1.2
+
+Translated to English
+Added SHA512 and MD5 files signatures
+Made some fixes and improves on the code
+Added data collect of:
+ - uname -a
+ - uname -r
+
+v1.1.1
+
+Added dynamic data collect
+Added data collect of:
+ - /etc/selinux/config
+ - /etc/selinux/semanage.conf
+ - /etc/sestatus.conf
+ - /etc/hosts.allow
+ - /etc/hosts.deny
+ - /etc/rsyslog.conf
+ - /proc/devices
+
+v1.1
+
+Added data collect of:
+ - Iptables
+ - Firewalld
+ - UFW
+ - DHCP
+ - DNS
+ - FTP (vsftpd)
+ - SMB
+ - Apache
+ - MariaDB
+ - Squid
+ - SSH
+ - PHP
+ - /etc/network/interfaces
+ - lspci -vvv
+ - fdisk -l
+ - set
+ - /etc/machine-id
+ - /sys/class/dmi/id/product_uuid
+ - /etc/resolv.conf
+ - crontab -l
+ - blkid
+ - /etc/profile
+ - /etc/hosts
+ - /etc/fstab
+ - /etc/mtab
+ - /etc/group
+ - /proc/cmdline
+ - /etc/rc*.d/
+ - /etc/init.d/
+ - /etc/cron.d/
+ - /etc/cron.hourly/
+ - /etc/cron.dialy/
+ - /etc/cron.weekely/
+ - /etc/cron.monthly/
+
+
+Added logs collect of:
+ - Firewalld
+ - UFW
+ - FTP (vsftpd)
+ - SMBD
+ - NMBD
+ - Apache
+ - MariaDB
+ - Squid
+
+Erased collect of 'ip a' and dmesg
+Added an option for compare evidences
+Added the possibility of execute Linux's Doctor without menusdo
+Added the possibility of send evidences to FTP/Telegram
+Now Linux's Doctor create a file about the system and the analysis made
+Now more information is stored on log.txt
+Fixed some errors that could provoke false positives in evidence's comparisions
+
+v1.0

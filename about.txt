@@ -1,0 +1,105 @@
+About Linux's Doctor
+
+Linux's Doctor options:
+	- Get data from system
+	- Get data from system and compare evidences
+	- Compare evidences
+	- Show information of the script
+	- Exit
+
+Linux's Doctor need these files for it could work:
+	- linuxs-doctor.sh
+	- analysis.sh
+	- comparision.sh
+	- sendreport.sh
+	- file.conf: You must configure it if you want save credentials for extern mediums
+
+Linux's Doctor generate these files:
+	- System data:
+		- kernelsign.txt: Signature in sha256 of System's Kernel
+		- sudoers.txt: File that contains a list with users that can use "sudo" command for get administrator privileges
+		- sudoerssign.txt: Signature in sha256 of sudoers file
+		- shadow.txt: File that contains a list with users, encrypted passwords, expiration and validity time of the account
+		- shadowsign.txt: Signature in sha256 of shadow file
+		- passwd.txt:  File that contains a list with users, password state, UID, GID, default user folder and shell that the user uses
+		- passwdsign.txt: Signature in sha256 of passwd file
+		- root_bash_history.txt: File that contains history's command introduced by root
+		- unamea.txt: File that contains information about linux system information
+		- unamer.txt: File that contains information about kernel
+		- dpkg.txt: File that contains a list of packages installed in the system
+		- crontab.txt: File that contains cron's configuration
+		- crontabl.txt: File that contains cron's tables
+		- grub.txt: File that contains GRUB's configuration
+		- interfaces.txt: File that store interfaces' configuration
+		- profile.txt: File that contains the first script that is executed when an user connect to a terminal
+		- hosts.txt: File that contains relations between machine's names and IPs
+		- fstab.txt: File that contains information of how system's determinate which options are going to use when system needs to mount a specific device
+		- mtab.txt: File that contains a list with mounted filesystems and inicializations modes
+		- group.txt: File that contains names of system's groups and users than contains to each group
+		- rc*.d: Contains all the scripts that get executed when the system boots
+		- init.d: Contains all the inicializations' file services on the system
+		- cron.d: Contains a list with cron jobs for be read for cron service
+		- cron.hourly: Contains the scripts that cron execute each hour
+		- cron.dialy: Contains the scripts that cron execute each day
+		- cron.weekely: Contains the scripts that cron execute each week
+		- cron.monthly: Contains the scripts that cron execute each month
+		- cmdline.txt: File that contains the parameters that is passed to kernel for system's boot
+		- blkid.txt: File that shows information about devices with availables blocks
+	 	- dmesg.txt: File that shows the kernel ring buffer
+	 	- lastlog.txt: File that shows the most recent login of all users
+	 	- runlevel.txt: File that shows the runlevel
+		- lspci.txt: File that shows information PCI buses and devices connected on PCI
+		- fdisk.txt: File that shows information disk's partitions
+		- printenv.txt: File that shows system's variables
+		- selinuxconfig.txt: File that shows selinux configuration
+		- selinuxsemanage.txt: File that shows selinux's politics configuration
+		- selinuxstatus.txt: File that shows the configuration of sestatus command
+		- hosts_allow.txt: File that shows of allowed hosts for rules with entrance actions
+		- hosts_deny.txt: File that shows of denied hosts for rules with entrance actions
+		- rsyslog.txt: File that shows rsyslog configuration
+		- devices.txt: File that shows information about devices connected to the system
+		- machine_id.txt: File that shows machine's ID
+		- product_uuid.txt: File that shows machine's product UUID
+		- resolv.txt: File that shows the DNS resolver
+	- Network configuration:
+		- nmcli.txt: File that shows information about current network configuration
+		- netstat.txt: File that shows information about system's connections
+		- dig.txt: File that shows information about who replys DNS queries
+		- route.txt: File that shows information about system's routing tables
+		- arp.txt: File that shows information about system's ARP tables
+	- System's services:
+		- iptables.txt: File that shows information about iptables service and their configuration
+		- firewalld.txt: File that shows information about firewalld service and their configuration
+		- ufw.txt: File that shows information about ufw service and their configuration
+		- dhcp.txt: File that shows information about DHCP service and their configuration
+		- dns.txt: File that shows information about DNS service and their configuration
+		- vsftpd.txt: File that shows information about vsftpd service and their configuration
+		- samba.txt: File that shows information about samba service and their configuration
+		- apache.txt: File that shows information about apache service and their configuration
+		- mariadb.txt: File that shows information about mariadb service and their configuration
+		- squid.txt: File that shows information about squid service and their configuration
+		- ssh.txt: File that shows information about SSH service and their configuration
+		- php.txt: File that shows information about PHP and their configuration
+	- System's logs:
+		- auth.log*: System's access logs
+		- dpkg.log*: System's packages logs
+		- syslog*: System's general logs
+		- boot.log*: System's boot logs
+		- kern.log*: System's kernel logs
+		- logfile_auth_log.txt, logfile_dpkg_log.txt, logfile_syslog.txt, logfile_boot_log.txt, logfile_kern_log.txt: A file with all logs content
+	- Service's logs:
+		- firewalld.txt: Firewalld service's logs
+		- ufw*: Ufw service's logs
+		- vsftpd.txt: Vsftpd service's logs
+		- log.smbd*: Smbd service's logs
+		- log.nmbd*: Nmbd service's logs
+		- apache2/error.log*: Apache2 service's logs  (errors)
+		- apache2/access.log*: Apache2 service's logs (access)
+		- mariadb.txt: Mariadb service's logs
+		- squid/error.log.txt: Squid service's logs (errors)
+		- squid/access.log.txt: Squid service's logs (access)
+		- logfile_ufw.txt, logfile_log.smbd.txt, logfile_log.nmbd.txt, apache2/logfile_error.log.txt, apache2/logfile_access.log.txt: A file with all logs content
+	- Dump RAM
+	- Dynamic data
+	- analysis.txt: Contains information about the analysis and the system
+	- report.txt: If you do an evidences comparision, it will be generated this file that contains information about the results of evidences comparisions
