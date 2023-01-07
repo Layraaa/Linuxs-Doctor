@@ -1,22 +1,21 @@
-# Linux's Doctor v1.1.1
+# Linux's Doctor v1.1.2
 
-Linux's Doctor es una herramienta para análisis forense. Con esta herramienta podrás recoger datos sensibles del sistema y hacer una comparación con datos anteriores para observar que ha pasado en casos de desastre. Ha sido probado para:
+Linux's Doctor is a forensic analysis tool. With this tool you will be able to collect sensitive data from the system and make a comparison with previous data to observe what has happened in cases of disaster, or collect data to analyze it later. It has been tested on:
 - Debian
 - Ubuntu Server
 - Kali Linux
 - CentOS
 
-Con esta herramienta podrás:
-- Recoger archivos del sistema
-- Recoger información sobre servicios del sistema
-- Recoger las configuraciones de red establecidas
-- Recoger los logs del sistema
-- Recoger los logs de servicios
-- Realizar volcados de RAM
-- Comparar resultados anteriores con actuales y generar un reporte con los resultados
-- Enviar las evidencias recogidas a un servidor FTP y/o Telegram
+With Linux's Doctor you could:
+- Collect system data (and logs)
+- Collect system's service data (and logs)
+- Collect network configuration
+- Collect dyncamic data
+- Dump RAM memomry
+- Compare previous evidence with current evidence and generate a report with the results
+- Send the collected evidence to an FTP server and/or Telegram
 
-Instrucciones de instalación:
+Installation guide:
 
 <code>git clone https://github.com/Layraaa/Linuxs-Doctor</code>  
 <code>cd Linuxs-Doctor</code>  
