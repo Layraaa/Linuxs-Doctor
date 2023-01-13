@@ -2,6 +2,7 @@
 # Get system data and create analysis.txt
 
 function analisis (){
+	# Create main directory and analysis.txt
 	date=$(date +"%Y.%m.%d-%H.%M.%S")
 	rutadatos="$rutareporte/evidences-$date"
 	mkdir "$rutadatos" >> log.txt 2>&1
@@ -613,7 +614,7 @@ function recogidadatosDebian (){
 	# Dump RAM
 	if [[ $ram == "Y" ]] || [[ $ram == "y" ]]
 	then
-		if [[ ! -d LiME/src ]]
+		if [[ -d LiME/src ]]
 		then
 			echo "${white}[${green}!${white}]${lightblue} Dumping RAM..."
 			echo "${white}"
@@ -1163,7 +1164,7 @@ function recogidadatosCentOS (){
 	# Dump RAM
 	if [[ $ram == "Y" ]] || [[ $ram == "y" ]]
 	then
-		if [[ ! -d LiME/src ]]
+		if [[ -d LiME/src ]]
 		then
 			echo "${white}[${green}!${white}]${lightblue} Dumping RAM..."
 			echo "${white}"
