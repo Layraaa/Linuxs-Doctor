@@ -21,8 +21,7 @@ fi
 # If user doesn't have admin permisssions, end the script
 if [[ $EUID != 0 ]]
 then
-	echo "${white}"
-	echo " _     _                           ____             _             "
+	echo "${white} _     _                           ____             _             "
 	echo "| |   (_)_ __  _   ___  __() ___  |  _ \  ___   ___| |_ ___  _ __ "
 	echo "| |   | | '_ \| | | \ \/ /|// __| | | | |/ _ \ / __| __/ _ \| '__|"
 	echo "| |___| | | | | |_| |>  <   \__ \ | |_| | (_) | (__| || (_) | |   "
@@ -36,8 +35,7 @@ then
 	exit
 fi
 
-echo "${white}"
-echo " _     _                           ____             _             "
+echo "${white} _     _                           ____             _             "
 echo "| |   (_)_ __  _   ___  __() ___  |  _ \  ___   ___| |_ ___  _ __ "
 echo "| |   | | '_ \| | | \ \/ /|// __| | | | |/ _ \ / __| __/ _ \| '__|"
 echo "| |___| | | | | |_| |>  <   \__ \ | |_| | (_) | (__| || (_) | |   "
@@ -45,7 +43,6 @@ echo "|_____|_|_| |_|\__,_/_/\_\  |___/ |____/ \___/ \___|\__\___/|_|   "
 echo ""
 echo "Made by ${green}@Layraaa and @Japinper ${white}| ${blue}v1.1.2${white}"
 echo "https://github.com/Layraaa/Linuxs-Doctor"
-echo ""
 
 # Check if all files are finded correctly
 if [ ! -f analysis.sh ]
@@ -81,7 +78,12 @@ source file.conf
 
 # Show help message
 function help (){
-	echo "Help
+	echo " _   _      _       
+| | | | ___| |_ __  
+| |_| |/ _ \ | '_ \ 
+|  _  |  __/ | |_) |
+|_| |_|\___|_| .__/ 
+             |_|    
 
 bash linuxs-doctor.sh [-l classic]
 bash linuxs-doctor.sh [-l terminal] [-m] [-r] [-e] [-x] [-u] [-p] [-s] [-t]
@@ -181,8 +183,7 @@ classic) # Classic Mode
 	while true
 	do
         clear
-        echo "${white}"
-		echo " _     _                           ____             _             "
+		echo "${white} _     _                           ____             _             "
         echo "| |   (_)_ __  _   ___  __() ___  |  _ \  ___   ___| |_ ___  _ __ "
         echo "| |   | | '_ \| | | \ \/ /|// __| | | | |/ _ \ / __| __/ _ \| '__|"
         echo "| |___| | | | | |_| |>  <   \__ \ | |_| | (_) | (__| || (_) | |   "

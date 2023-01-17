@@ -20,8 +20,7 @@ fi
 # If user doesn't have admin permisssions, end the script
 if [[ $EUID != 0 ]]
 then
-	echo "${white}"
-	echo " _     _                           ____             _             "
+	echo "${white} _     _                           ____             _             "
 	echo "| |   (_)_ __  _   ___  __() ___  |  _ \  ___   ___| |_ ___  _ __ "
 	echo "| |   | | '_ \| | | \ \/ /|// __| | | | |/ _ \ / __| __/ _ \| '__|"
 	echo "| |___| | | | | |_| |>  <   \__ \ | |_| | (_) | (__| || (_) | |   "
@@ -37,8 +36,7 @@ fi
 
 clear
 
-echo "${white}"
-echo " _     _                           ____             _             "
+echo "${white} _     _                           ____             _             "
 echo "| |   (_)_ __  _   ___  __() ___  |  _ \  ___   ___| |_ ___  _ __ "
 echo "| |   | | '_ \| | | \ \/ /|// __| | | | |/ _ \ / __| __/ _ \| '__|"
 echo "| |___| | | | | |_| |>  <   \__ \ | |_| | (_) | (__| || (_) | |   "
@@ -107,7 +105,7 @@ case $so in
 		fi
 
 		# Dependences' installation
-		date +"Installing dependences for Kali Linux the %d/%m/%Y - %T" >> log.txt
+		date +"Installing dependences for Kali Linux the %d/%m/%Y - %T" >> log
 		echo ""
 		echo "${white}[${red}*${white}]${lightblue} Staring dependences' installation for Kali Linux..."
 		apt-get install coreutils findutils dpkg util-linux login runit-init net-tools dnsutils network-manager git make build-essential linux-headers-"$(uname -r)" zip lsof -y >> log.txt 2>&1
