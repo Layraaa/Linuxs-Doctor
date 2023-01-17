@@ -6,6 +6,11 @@ function analisis (){
 	date=$(date +"%Y.%m.%d-%H.%M.%S")
 	rutadatos="$rutareporte/evidences-$date"
 	mkdir "$rutadatos" >> log.txt 2>&1
+	if [[ ! -d $rutadatos ]]
+	then
+		echo "${red}It couldn't be created the main folder${white}"
+		exit
+	fi
 	touch "$rutadatos"/analysis.txt >> log.txt 2>&1
 	if [ ! -f "$rutadatos"/analysis.txt ]
 	then
@@ -76,7 +81,7 @@ function recogidadatosDebian (){
 	cat /etc/mtab > "$rutadatos"/system-files/mtab.txt
 	cat /etc/group > "$rutadatos"/system-files/group.txt
 	mkdir "$rutadatos"/system-files/rc.d
-	cp -r /etc/rc*.d/ "$rutadatos"/system-files/rc.d/ >> log.txt 2>&1
+	cp -p -r /etc/rc*.d/ "$rutadatos"/system-files/rc.d/ >> log.txt 2>&1
 	for i in $(ls "$rutadatos"/system-files/rc.d/)
 	do
 		path="$(ls "$rutadatos"/system-files/rc.d/"$i")"
@@ -87,12 +92,12 @@ function recogidadatosDebian (){
 		done
 	done
 	{
-		cp -r /etc/init.d/ "$rutadatos"/system-files/
-		cp -r /etc/cron.d/ "$rutadatos"/system-files/
-		cp -r /etc/cron.hourly/ "$rutadatos"/system-files/
-		cp -r /etc/cron.dialy/ "$rutadatos"/system-files/
-		cp -r /etc/cron.weekely/ "$rutadatos"/system-files/
-		cp -r /etc/cron.monthly/ "$rutadatos"/system-files/
+		cp -p -r /etc/init.d/ "$rutadatos"/system-files/
+		cp -p -r /etc/cron.d/ "$rutadatos"/system-files/
+		cp -p -r /etc/cron.hourly/ "$rutadatos"/system-files/
+		cp -p -r /etc/cron.dialy/ "$rutadatos"/system-files/
+		cp -p -r /etc/cron.weekely/ "$rutadatos"/system-files/
+		cp -p -r /etc/cron.monthly/ "$rutadatos"/system-files/
 	} >> log.txt 2>&1
 	cat /proc/cmdline > "$rutadatos"/system-files/cmdline.txt
 	blkid > "$rutadatos"/system-files/blkid.txt
@@ -330,12 +335,12 @@ function recogidadatosDebian (){
 		mkdir  "$rutadatos"/system-logs/boot
 		mkdir  "$rutadatos"/system-logs/kern
 		mkdir  "$rutadatos"/system-logs/lastlog
-		cp /var/log/auth.log*  "$rutadatos"/system-logs/auth/
-		cp /var/log/dpkg.log*  "$rutadatos"/system-logs/dpkg/
-		cp /var/log/syslog*  "$rutadatos"/system-logs/syslog/
-		cp /var/log/boot.log*  "$rutadatos"/system-logs/boot/
-		cp /var/log/kern.log*  "$rutadatos"/system-logs/kern/
-		cp /var/log/lastlog* "$rutadatos"/system-logs/lastlog/
+		cp -p /var/log/auth.log*  "$rutadatos"/system-logs/auth/
+		cp -p /var/log/dpkg.log*  "$rutadatos"/system-logs/dpkg/
+		cp -p /var/log/syslog*  "$rutadatos"/system-logs/syslog/
+		cp -p /var/log/boot.log*  "$rutadatos"/system-logs/boot/
+		cp -p /var/log/kern.log*  "$rutadatos"/system-logs/kern/
+		cp -p /var/log/lastlog* "$rutadatos"/system-logs/lastlog/
 	} >> log.txt 2>&1
 
 	# Descompress all system's logs and copy their content in a file
@@ -445,11 +450,11 @@ function recogidadatosDebian (){
 	mkdir  "$rutadatos"/logs-services/samba >> log.txt 2>&1
 	mkdir  "$rutadatos"/logs-services/apache2 >> log.txt 2>&1
 	mkdir  "$rutadatos"/logs-services/squid >> log.txt 2>&1
-	cp /var/log/ufw* "$rutadatos"/logs-services/ufw/ >> log.txt 2>&1
-	cp /var/log/samba/log.smbd* "$rutadatos"/logs-services/samba/ >> log.txt 2>&1
-	cp /var/log/samba/log.nmbd* "$rutadatos"/logs-services/samba/ >> log.txt 2>&1
-	cp /var/log/apache2/error.log* "$rutadatos"/logs-services/apache2/ >> log.txt 2>&1
-	cp /var/log/apache2/access.log* "$rutadatos"/logs-services/apache2/ >> log.txt 2>&1
+	cp -p /var/log/ufw* "$rutadatos"/logs-services/ufw/ >> log.txt 2>&1
+	cp -p /var/log/samba/log.smbd* "$rutadatos"/logs-services/samba/ >> log.txt 2>&1
+	cp -p /var/log/samba/log.nmbd* "$rutadatos"/logs-services/samba/ >> log.txt 2>&1
+	cp -p /var/log/apache2/error.log* "$rutadatos"/logs-services/apache2/ >> log.txt 2>&1
+	cp -p /var/log/apache2/access.log* "$rutadatos"/logs-services/apache2/ >> log.txt 2>&1
 
 	{
 		cat /var/log/firewalld > "$rutadatos"/logs-services/firewalld.txt
@@ -564,7 +569,7 @@ function recogidadatosDebian (){
 		ps axufwww >> "$rutadatos"/archivos-dinamicos/ps.txt
 		date >> "$rutadatos"/archivos-dinamicos/date.txt
 		dpkg -l >> "$rutadatos"/archivos-dinamicos/dpkg.txt 
-		free -m >> "$rutadatos"/archivos-dinamicos/free.txt
+		free -h >> "$rutadatos"/archivos-dinamicos/free.txt
 		lsof >> "$rutadatos"/archivos-dinamicos/lsof.txt
 		lsof -i >> "$rutadatos"/archivos-dinamicos/lsofi.txt
 
@@ -683,7 +688,7 @@ function recogidadatosCentOS (){
 	cat /etc/mtab > "$rutadatos"/system-files/mtab.txt
 	cat /etc/group > "$rutadatos"/system-files/group.txt
 	mkdir "$rutadatos"/system-files/rc.d
-	cp -r /etc/rc.d/rc*.d/ "$rutadatos"/system-files/rc.d/ >> log.txt 2>&1
+	cp -p -r /etc/rc.d/rc*.d/ "$rutadatos"/system-files/rc.d/ >> log.txt 2>&1
 	for i in $(ls "$rutadatos"/system-files/rc.d/)
 	do
 		path="$(ls "$rutadatos"/system-files/rc.d/"$i")"
@@ -694,12 +699,12 @@ function recogidadatosCentOS (){
 		done
 	done
 	{
-		cp -r /etc/init.d/ "$rutadatos"/system-files/
-		cp -r /etc/cron.d/ "$rutadatos"/system-files/
-		cp -r /etc/cron.hourly/ "$rutadatos"/system-files/
-		cp -r /etc/cron.dialy/ "$rutadatos"/system-files/
-		cp -r /etc/cron.weekely/ "$rutadatos"/system-files/
-		cp -r /etc/cron.monthly/ "$rutadatos"/system-files/
+		cp -p -r /etc/init.d/ "$rutadatos"/system-files/
+		cp -p -r /etc/cron.d/ "$rutadatos"/system-files/
+		cp -p -r /etc/cron.hourly/ "$rutadatos"/system-files/
+		cp -p -r /etc/cron.dialy/ "$rutadatos"/system-files/
+		cp -p -r /etc/cron.weekely/ "$rutadatos"/system-files/
+		cp -p -r /etc/cron.monthly/ "$rutadatos"/system-files/
 	} >> log.txt 2>&1
 
 	cat /proc/cmdline > "$rutadatos"/system-files/cmdline.txt
@@ -881,12 +886,12 @@ function recogidadatosCentOS (){
 		mkdir  "$rutadatos"/system-logs/boot
 		mkdir  "$rutadatos"/system-logs/kern
 		mkdir  "$rutadatos"/system-logs/lastlog
-		cp /var/log/auth.log*  "$rutadatos"/system-logs/auth/
-		cp /var/log/dpkg.log*  "$rutadatos"/system-logs/dpkg/
-		cp /var/log/messages*  "$rutadatos"/system-logs/messages/
-		cp /var/log/boot.log*  "$rutadatos"/system-logs/boot/
-		cp /var/log/kern.log*  "$rutadatos"/system-logs/kern/
-		cp /var/log/lastlog* "$rutadatos"/system-logs/lastlog/
+		cp -p /var/log/auth.log*  "$rutadatos"/system-logs/auth/
+		cp -p /var/log/dpkg.log*  "$rutadatos"/system-logs/dpkg/
+		cp -p /var/log/messages*  "$rutadatos"/system-logs/messages/
+		cp -p /var/log/boot.log*  "$rutadatos"/system-logs/boot/
+		cp -p /var/log/kern.log*  "$rutadatos"/system-logs/kern/
+		cp -p /var/log/lastlog* "$rutadatos"/system-logs/lastlog/
 	} >> log.txt 2>&1
 
 	# Descompress all system's logs and copy their content in a file
@@ -996,11 +1001,11 @@ function recogidadatosCentOS (){
 	mkdir  "$rutadatos"/logs-services/samba >> log.txt 2>&1
 	mkdir  "$rutadatos"/logs-services/httpd >> log.txt 2>&1
 	mkdir  "$rutadatos"/logs-services/squid >> log.txt 2>&1
-	cp /var/log/ufw* "$rutadatos"/logs-services/ufw/ >> log.txt 2>&1
-	cp /var/log/samba/log.smbd* "$rutadatos"/logs-services/samba/ >> log.txt 2>&1
-	cp /var/log/samba/log.nmbd* "$rutadatos"/logs-services/samba/ >> log.txt 2>&1
-	cp /var/log/httpd/error_log* "$rutadatos"/logs-services/httpd/ >> log.txt 2>&1
-	cp /var/log/httpd/access_log* "$rutadatos"/logs-services/httpd/ >> log.txt 2>&1
+	cp -p /var/log/ufw* "$rutadatos"/logs-services/ufw/ >> log.txt 2>&1
+	cp -p /var/log/samba/log.smbd* "$rutadatos"/logs-services/samba/ >> log.txt 2>&1
+	cp -p /var/log/samba/log.nmbd* "$rutadatos"/logs-services/samba/ >> log.txt 2>&1
+	cp -p /var/log/httpd/error_log* "$rutadatos"/logs-services/httpd/ >> log.txt 2>&1
+	cp -p /var/log/httpd/access_log* "$rutadatos"/logs-services/httpd/ >> log.txt 2>&1
 
 	{
 		cat /var/log/firewalld > "$rutadatos"/logs-services/firewalld.txt
@@ -1114,7 +1119,7 @@ function recogidadatosCentOS (){
 		ps axufwww >> "$rutadatos"/archivos-dinamicos/ps.txt
 		date >> "$rutadatos"/archivos-dinamicos/date.txt
 		yum list installed >> "$rutadatos"/archivos-dinamicos/yum.txt 
-		free -m >> "$rutadatos"/archivos-dinamicos/free.txt
+		free -h >> "$rutadatos"/archivos-dinamicos/free.txt
 		lsof >> "$rutadatos"/archivos-dinamicos/lsof.txt
 		lsof -i >> "$rutadatos"/archivos-dinamicos/lsofi.txt
 
