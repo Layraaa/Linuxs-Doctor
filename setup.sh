@@ -70,10 +70,10 @@ case $so in
 			apt-get update -y && apt-get upgrade -y >> log.txt 2>&1
 		fi
 
-		# Install the tool
+		# Dependences' installation
 		date +"Installing dependences for Debian the %d/%m/%Y - %T" >> log.txt
 		echo ""
-		echo "${white}[${red}*${white}]${lightblue} Staring installation for Debian"
+		echo "${white}[${red}*${white}]${lightblue} Staring dependences' installation for Debian..."
 		apt-get install coreutils findutils dpkg util-linux login net-tools dnsutils network-manager git make build-essential linux-headers-"$(uname -r)" zip lsof -y >> log.txt 2>&1
 	;;
 	Ubuntu)
@@ -88,10 +88,10 @@ case $so in
 			apt-get update -y && apt-get upgrade -y >> log.txt 2>&1
 		fi
 
-		# Install the tool
+		# Dependences' installation
 		date +"Installing dependences for Ubuntu the %d/%m/%Y - %T" >> log.txt
 		echo ""
-		echo "${white}[${red}*${white}]${lightblue} Staring installation for Ubuntu"
+		echo "${white}[${red}*${white}]${lightblue} Staring dependences' installation for Ubuntu..."
 		apt-get install coreutils findutils dpkg util-linux login net-tools dnsutils network-manager git make build-essential linux-headers-"$(uname -r)" zip lsof -y >> log.txt 2>&1
 	;;
 	Kali)
@@ -106,10 +106,10 @@ case $so in
 			apt-get update -y && apt-get upgrade -y >> log.txt 2>&1
 		fi
 
-		# Install the tool
+		# Dependences' installation
 		date +"Installing dependences for Kali Linux the %d/%m/%Y - %T" >> log
-		echo "".txt
-		echo "${white}[${red}*${white}]${lightblue} Staring installation for Kali Linux"
+		echo ""
+		echo "${white}[${red}*${white}]${lightblue} Staring dependences' installation for Kali Linux..."
 		apt-get install coreutils findutils dpkg util-linux login runit-init net-tools dnsutils network-manager git make build-essential linux-headers-"$(uname -r)" zip lsof -y >> log.txt 2>&1
 	;;
 	CentOS)
@@ -124,10 +124,10 @@ case $so in
 			yum update -y >> log.txt 2>&1
 		fi
 
-		# Install the tool
+		# Dependences' installation
 		date +"Installing dependences for CentOS the %d/%m/%Y - %T" >> log.txt
 		echo ""
-		echo "${white}[${red}*${white}]${lightblue} Staring installation for CentOS"
+		echo "${white}[${red}*${white}]${lightblue} Staring dependences' installation for CentOS..."
 		yum install coreutils findutils dpkg util-linux systemd net-tools git make build-essential kernel-devel gcc bind-utils lsof -y >> log.txt 2>&1
 		yum install linux-headers-"$(uname -r)" -y >> log.txt 2>&1
 	;;
@@ -138,7 +138,7 @@ esac
 
 # LiME installation
 
-echo "${white}[${red}*${white}] ${lightblue}Installing LiME"
+echo "${white}[${red}*${white}] ${lightblue}Installing LiME..."
 echo ""	
 
 git clone https://github.com/504ensicsLabs/LiME >> log.txt 2>&1
@@ -149,13 +149,15 @@ then
 	} >> log.txt 2>&1
 	echo "${white}[${green}!${white}] ${lightblue}LiME was installed correctly!"
 else
-	echo "${white}[${green}!${white}] ${lightblue}It couldn't install LiME, check the log :("
+	echo "${white}[${green}!${white}] ${lightblue}It couldn't be installed LiME, check the log :("
 fi
 
-# Installation end
-date +"Installation end the %d/%m/%Y - %T" >> log.txt
+# End of installation
+
+date +"End of installation the %d/%m/%Y - %T" >> log.txt
 echo "" >> log.txt
 echo "${white}[${green}!${white}] ${lightblue}Installation completed!"
+echo "${white}[${green}!${white}] ${lightblue}Remember check 'file.conf'"
 echo ""
 echo "${lightblue}¡Thanks for install Linux's Doctor!"
 echo "https://github.com/Layraaa/Linuxs-Doctor"
