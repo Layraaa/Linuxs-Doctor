@@ -107,7 +107,6 @@ bash linuxs-doctor.sh [-h help|info]
 -h (help/info)		Show help
 	help	Show help for execute Linux's Doctor
 	info	Show info of Linux's Doctor"
-	echo ""
 }
 
 # Read all parameters passed by terminal
