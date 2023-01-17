@@ -20,5 +20,6 @@ Installation guide:
 <code>git clone https://github.com/Layraaa/Linuxs-Doctor</code>  
 <code>cd Linuxs-Doctor</code>  
 <code>chmod +x setup.sh</code>  
-<code>bash setup.sh</code>  
+<code>bash setup.sh</code>
+<code>chmod +x linuxs-doctor.sh</code> 
 <code>bash linuxs-doctor.sh</code>  
