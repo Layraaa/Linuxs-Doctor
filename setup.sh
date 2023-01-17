@@ -107,7 +107,7 @@ case $so in
 		fi
 
 		# Dependences' installation
-		date +"Installing dependences for Kali Linux the %d/%m/%Y - %T" >> log
+		date +"Installing dependences for Kali Linux the %d/%m/%Y - %T" >> log.txt
 		echo ""
 		echo "${white}[${red}*${white}]${lightblue} Staring dependences' installation for Kali Linux..."
 		apt-get install coreutils findutils dpkg util-linux login runit-init net-tools dnsutils network-manager git make build-essential linux-headers-"$(uname -r)" zip lsof -y >> log.txt 2>&1
