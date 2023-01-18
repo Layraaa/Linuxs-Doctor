@@ -355,10 +355,6 @@ classic) # Classic Mode
 				then
 					clear
 					bash linuxs-doctor.sh -l classic
-				elif [[ -z $elegir ]]
-				then
-					echo "You didn't put any value"
-					continue
 				else
 					continue
 				fi
