@@ -26,7 +26,7 @@ function analisis (){
 		echo "Kernel's version: $(uname -r)"
 		echo "IP address: $(hostname -I)"
 		echo ""
-		echo "Tool version: 1.1.2"
+		echo "Tool version: 1.1.2.1"
 		echo "Analysis made: $linuxsdoctor"
 		date +"Start time: %T"
 		echo "End time: -"
@@ -41,6 +41,95 @@ function finanalisis (){
 }
 
 function recogidadatosDebian (){
+
+	# Dump RAM
+	if [[ $ram == "Y" ]] || [[ $ram == "y" ]]
+	then
+		if [[ -d LiME/src ]]
+		then
+			echo "${white}[${green}*${white}]${lightblue} Dumping RAM..."
+			echo ""
+			echo "Dumping RAM" >> log.txt
+			cd LiME/src/ || return
+			insmod lime-"$(uname -r)".ko "path=$rutadatos/volcado_memoria format=raw"
+			rmmod lime
+			cd ..
+			cd ..
+			echo "${white}[${green}!${white}]${lightblue} Done!"
+			echo "${white}"
+		else
+			echo "${white}[${red}*${white}]${lightblue}It couldn't detect LiME :("
+			echo ""
+			echo "It couldn't detect LiME" >> log.txt
+		fi
+	fi
+
+	# Get dynamic data
+	echo "${white}[${red}*${white}]${lightblue} Getting dynamic data..."
+	{
+		mkdir "$rutadatos"/archivos-dinamicos
+
+		ls -lrtaRh /etc >> "$rutadatos"/archivos-dinamicos/lsetc.txt
+		ls -lrtaRh /dev >> "$rutadatos"/archivos-dinamicos/lsdev.txt
+		ls -lrtaRh /bin >> "$rutadatos"/archivos-dinamicos/lsbin.txt
+		ls -lrtaRh /sbin >> "$rutadatos"/archivos-dinamicos/lssbin.txt
+		ls -lrtaRh /usr/bin >> "$rutadatos"/archivos-dinamicos/lsusrbin.txt
+		ls -lrtaRh /usr/sbin >> "$rutadatos"/archivos-dinamicos/lsusrsbin.txt
+		netstat -tupan >> "$rutadatos"/archivos-dinamicos/netstat.txt
+		last >> "$rutadatos"/archivos-dinamicos/last.txt
+		w >> "$rutadatos"/archivos-dinamicos/w.txt
+		dmesg >> "$rutadatos"/archivos-dinamicos/dmesg.txt
+		lsmod >> "$rutadatos"/archivos-dinamicos/lsmod.txt
+		ps axufwww >> "$rutadatos"/archivos-dinamicos/ps.txt
+		date >> "$rutadatos"/archivos-dinamicos/date.txt
+		dpkg -l >> "$rutadatos"/archivos-dinamicos/dpkg.txt 
+		free -h >> "$rutadatos"/archivos-dinamicos/free.txt
+		lsof >> "$rutadatos"/archivos-dinamicos/lsof.txt
+		lsof -i >> "$rutadatos"/archivos-dinamicos/lsofi.txt
+
+		cat /var/log/btmp >> "$rutadatos"/archivos-dinamicos/btmp.txt
+		cat /var/log/wtmp >> "$rutadatos"/archivos-dinamicos/wtmp.txt
+		cat /etc/os-release >> "$rutadatos"/archivos-dinamicos/os-release.txt
+		cat /proc/version >> "$rutadatos"/archivos-dinamicos/version.txt
+		cat /proc/cpuinfo >> "$rutadatos"/archivos-dinamicos/cpuinfo.txt
+		cat /proc/swaps >> "$rutadatos"/archivos-dinamicos/swaps.txt
+		cat /proc/partitions >> "$rutadatos"/archivos-dinamicos/partitions.txt
+		cat /proc/self/mounts >> "$rutadatos"/archivos-dinamicos/mounts.txt
+		cat /proc/meminfo >> "$rutadatos"/archivos-dinamicos/meminfo.txt
+		cat /proc/uptime >> "$rutadatos"/archivos-dinamicos/uptime.txt
+		cat /proc/modules >> "$rutadatos"/archivos-dinamicos/modules.txt
+		cat /proc/vmstat >> "$rutadatos"/archivos-dinamicos/vmstat.txt
+
+		ls -lah /proc/[0-9]* >> "$rutadatos"/archivos-dinamicos/dataprocess.txt
+		ls -lah /proc/[0-9]*/exe >> "$rutadatos"/archivos-dinamicos/exe.txt
+		ls -lah /etc/init.d/ >> "$rutadatos"/archivos-dinamicos/initd.txt
+	} 2>> log.txt
+
+	mkdir "$rutadatos"/archivos-dinamicos/proc 2>> log.txt
+
+	for i in /proc/[0-9]*
+	do
+		{
+			mkdir "$rutadatos"/archivos-dinamicos/proc/"$i"
+			cat "$i"/cgroup >> "$rutadatos"/archivos-dinamicos/proc/"$i"/cgroup.txt
+			cat "$i"/cmdline >> "$rutadatos"/archivos-dinamicos/proc/"$i"/cmdline.txt
+			cat "$i"/comm >> "$rutadatos"/archivos-dinamicos/proc/"$i"/comm.txt
+			cat "$i"/environ >> "$rutadatos"/archivos-dinamicos/proc/"$i"/environ.txt
+			cat "$i"/io >> "$rutadatos"/archivos-dinamicos/proc/"$i"/io.txt
+			cat "$i"/limits >> "$rutadatos"/archivos-dinamicos/proc/"$i"/limits.txt
+			cat "$i"/maps >> "$rutadatos"/archivos-dinamicos/proc/"$i"/maps.txt
+			cat "$i"/mountinfo >> "$rutadatos"/archivos-dinamicos/proc/"$i"/mountinfo.txt
+			cat "$i"/numa_maps >> "$rutadatos"/archivos-dinamicos/proc/"$i"/numa_maps.txt
+			cat "$i"/sched >> "$rutadatos"/archivos-dinamicos/proc/"$i"/sched.txt
+			cat "$i"/status >> "$rutadatos"/archivos-dinamicos/proc/"$i"/status.txt
+		} 2>> log.txt
+	done
+
+	last reboot >> "$rutadatos"/archivos-dinamicos/lastreboot.txt
+
+	echo "${white}[${green}!${white}]${lightblue} Done!"
+	echo "${white}"
+
 	# Get system data
 	mkdir "$rutadatos"/system-files >> log.txt 2>&1
 	echo "${white}[${red}*${white}]${lightblue} Getting system data..."
@@ -123,7 +212,7 @@ function recogidadatosDebian (){
 	mkdir "$rutadatos"/network >> log.txt 2>&1
 	echo "${white}[${red}*${white}]${lightblue} Getting information of network configuration..."
 	nmcli dev show | sed '/^IP[4-6].ROUTE/d' > "$rutadatos"/network/nmcli.txt
-	netstat -ltun | awk '{$2=$3=""; print $0}' | awk '($1=$1) || 1' OFS=\\t | tail -n +2 | sort > "$rutadatos"/network/netstat.txt
+	netstat -ltun | awk '{$2=$3=""; print $0}' | tail -n +3 | sort | sed '1 i\Protocol Local_Address Foregein_Address State' | column -t > "$rutadatos"/network/netstat.txt
 	dig +short | sort > "$rutadatos"/network/dig.txt
 	route > "$rutadatos"/network/route.txt
 	arp -v -e > "$rutadatos"/network/arp.txt
@@ -548,6 +637,32 @@ function recogidadatosDebian (){
 
 	echo "${white}[${green}!${white}]${lightblue} Done!"
 	echo "${white}"
+	echo "" >> log.txt
+
+}
+
+function recogidadatosCentOS (){
+	
+	# Dump RAM
+	if [[ $ram == "Y" ]] || [[ $ram == "y" ]]
+	then
+		if [[ -d LiME/src ]]
+		then
+			echo "${white}[${green}*${white}]${lightblue} Dumping RAM..."
+			echo "${white}"
+			echo "Dumping RAM" >> log.txt
+			cd LiME/src/ || return
+			insmod lime-"$(uname -r)".ko "path=$rutadatos/volcado_memoria format=raw"
+			rmmod lime
+			cd ..
+			cd ..
+			echo "${white}[${green}!${white}]${lightblue} Done!"
+			echo "${white}"
+		else
+			echo "${white}[${red}*${white}]${lightblue}It couldn't detect LiME :("
+			echo "It couldn't detect LiME" >> log.txt
+		fi
+	fi
 
 	# Get dynamic data
 	echo "${white}[${red}*${white}]${lightblue} Getting dynamic data..."
@@ -568,7 +683,7 @@ function recogidadatosDebian (){
 		lsmod >> "$rutadatos"/archivos-dinamicos/lsmod.txt
 		ps axufwww >> "$rutadatos"/archivos-dinamicos/ps.txt
 		date >> "$rutadatos"/archivos-dinamicos/date.txt
-		dpkg -l >> "$rutadatos"/archivos-dinamicos/dpkg.txt 
+		yum list installed >> "$rutadatos"/archivos-dinamicos/yum.txt 
 		free -h >> "$rutadatos"/archivos-dinamicos/free.txt
 		lsof >> "$rutadatos"/archivos-dinamicos/lsof.txt
 		lsof -i >> "$rutadatos"/archivos-dinamicos/lsofi.txt
@@ -616,30 +731,6 @@ function recogidadatosDebian (){
 	echo "${white}[${green}!${white}]${lightblue} Done!"
 	echo "${white}"
 
-	# Dump RAM
-	if [[ $ram == "Y" ]] || [[ $ram == "y" ]]
-	then
-		if [[ -d LiME/src ]]
-		then
-			echo "${white}[${green}!${white}]${lightblue} Dumping RAM..."
-			echo "${white}"
-			echo "Dumping RAM" >> log.txt
-			cd LiME/src/ || return
-			insmod lime-"$(uname -r)".ko "path=$rutadatos/volcado_memoria format=raw"
-			rmmod lime
-			cd ..
-			cd ..
-			echo "${white}[${green}!${white}]${lightblue} Done!"
-			echo "${white}"
-		else
-			echo "It couldn't detect LiME"
-			echo "It couldn't detect LiME" >> log.txt
-		fi
-	fi
-	echo "" >> log.txt
-}
-
-function recogidadatosCentOS (){
 	# Get system data
 	mkdir "$rutadatos"/system-files >> log.txt 2>&1
 	echo "${white}[${red}*${white}]${lightblue} Getting system data..."
@@ -731,7 +822,7 @@ function recogidadatosCentOS (){
 	mkdir "$rutadatos"/network >> log.txt 2>&1
 	echo "${white}[${red}*${white}]${lightblue} Getting information of network configuration..."
 	nmcli dev show | sed '/^IP[4-6].ROUTE/d' > "$rutadatos"/network/nmcli.txt
-	netstat -ltun | awk '{$2=$3=""; print $0}' | awk '($1=$1) || 1' OFS=\\t | tail -n +2 | sort > "$rutadatos"/network/netstat.txt
+	netstat -ltun | awk '{$2=$3=""; print $0}' | tail -n +3 | sort | sed '1 i\Protocol Local_Address Foregein_Address State' | column -t > "$rutadatos"/network/netstat.txt
 	dig +short | sort > "$rutadatos"/network/dig.txt
 	route > "$rutadatos"/network/route.txt
 	arp -v -e > "$rutadatos"/network/arp.txt
@@ -1098,93 +1189,6 @@ function recogidadatosCentOS (){
 
 	echo "${white}[${green}!${white}]${lightblue} Done!"
 	echo "${white}"
-
-	# Get dynamic data
-	echo "${white}[${red}*${white}]${lightblue} Getting dynamic data..."
-
-	{
-		mkdir "$rutadatos"/archivos-dinamicos
-
-		ls -lrtaRh /etc >> "$rutadatos"/archivos-dinamicos/lsetc.txt
-		ls -lrtaRh /dev >> "$rutadatos"/archivos-dinamicos/lsdev.txt
-		ls -lrtaRh /bin >> "$rutadatos"/archivos-dinamicos/lsbin.txt
-		ls -lrtaRh /sbin >> "$rutadatos"/archivos-dinamicos/lssbin.txt
-		ls -lrtaRh /usr/bin >> "$rutadatos"/archivos-dinamicos/lsusrbin.txt
-		ls -lrtaRh /usr/sbin >> "$rutadatos"/archivos-dinamicos/lsusrsbin.txt
-		netstat -tupan >> "$rutadatos"/archivos-dinamicos/netstat.txt
-		last >> "$rutadatos"/archivos-dinamicos/last.txt
-		w >> "$rutadatos"/archivos-dinamicos/w.txt
-		dmesg >> "$rutadatos"/archivos-dinamicos/dmesg.txt
-		lsmod >> "$rutadatos"/archivos-dinamicos/lsmod.txt
-		ps axufwww >> "$rutadatos"/archivos-dinamicos/ps.txt
-		date >> "$rutadatos"/archivos-dinamicos/date.txt
-		yum list installed >> "$rutadatos"/archivos-dinamicos/yum.txt 
-		free -h >> "$rutadatos"/archivos-dinamicos/free.txt
-		lsof >> "$rutadatos"/archivos-dinamicos/lsof.txt
-		lsof -i >> "$rutadatos"/archivos-dinamicos/lsofi.txt
-
-		cat /var/log/btmp >> "$rutadatos"/archivos-dinamicos/btmp.txt
-		cat /var/log/wtmp >> "$rutadatos"/archivos-dinamicos/wtmp.txt
-		cat /etc/os-release >> "$rutadatos"/archivos-dinamicos/os-release.txt
-		cat /proc/version >> "$rutadatos"/archivos-dinamicos/version.txt
-		cat /proc/cpuinfo >> "$rutadatos"/archivos-dinamicos/cpuinfo.txt
-		cat /proc/swaps >> "$rutadatos"/archivos-dinamicos/swaps.txt
-		cat /proc/partitions >> "$rutadatos"/archivos-dinamicos/partitions.txt
-		cat /proc/self/mounts >> "$rutadatos"/archivos-dinamicos/mounts.txt
-		cat /proc/meminfo >> "$rutadatos"/archivos-dinamicos/meminfo.txt
-		cat /proc/uptime >> "$rutadatos"/archivos-dinamicos/uptime.txt
-		cat /proc/modules >> "$rutadatos"/archivos-dinamicos/modules.txt
-		cat /proc/vmstat >> "$rutadatos"/archivos-dinamicos/vmstat.txt
-
-		ls -lah /proc/[0-9]* >> "$rutadatos"/archivos-dinamicos/dataprocess.txt
-		ls -lah /proc/[0-9]*/exe >> "$rutadatos"/archivos-dinamicos/exe.txt
-		ls -lah /etc/init.d/ >> "$rutadatos"/archivos-dinamicos/initd.txt
-	} 2>> log.txt
-
-	mkdir "$rutadatos"/archivos-dinamicos/proc 2>> log.txt
-
-	for i in /proc/[0-9]*
-	do
-		{
-			mkdir "$rutadatos"/archivos-dinamicos/proc/"$i"
-			cat "$i"/cgroup >> "$rutadatos"/archivos-dinamicos/proc/"$i"/cgroup.txt
-			cat "$i"/cmdline >> "$rutadatos"/archivos-dinamicos/proc/"$i"/cmdline.txt
-			cat "$i"/comm >> "$rutadatos"/archivos-dinamicos/proc/"$i"/comm.txt
-			cat "$i"/environ >> "$rutadatos"/archivos-dinamicos/proc/"$i"/environ.txt
-			cat "$i"/io >> "$rutadatos"/archivos-dinamicos/proc/"$i"/io.txt
-			cat "$i"/limits >> "$rutadatos"/archivos-dinamicos/proc/"$i"/limits.txt
-			cat "$i"/maps >> "$rutadatos"/archivos-dinamicos/proc/"$i"/maps.txt
-			cat "$i"/mountinfo >> "$rutadatos"/archivos-dinamicos/proc/"$i"/mountinfo.txt
-			cat "$i"/numa_maps >> "$rutadatos"/archivos-dinamicos/proc/"$i"/numa_maps.txt
-			cat "$i"/sched >> "$rutadatos"/archivos-dinamicos/proc/"$i"/sched.txt
-			cat "$i"/status >> "$rutadatos"/archivos-dinamicos/proc/"$i"/status.txt
-		} 2>> log.txt
-	done
-
-	last reboot >> "$rutadatos"/archivos-dinamicos/lastreboot.txt
-
-	echo "${white}[${green}!${white}]${lightblue} Done!"
-	echo "${white}"
-
-	# Dump RAM
-	if [[ $ram == "Y" ]] || [[ $ram == "y" ]]
-	then
-		if [[ -d LiME/src ]]
-		then
-			echo "${white}[${green}!${white}]${lightblue} Dumping RAM..."
-			echo "${white}"
-			echo "Dumping RAM" >> log.txt
-			cd LiME/src/ || return
-			insmod lime-"$(uname -r)".ko "path=$rutadatos/volcado_memoria format=raw"
-			rmmod lime
-			cd ..
-			cd ..
-			echo "${white}[${green}!${white}]${lightblue} Done!"
-			echo "${white}"
-		else
-			echo "It couldn't detect LiME"
-			echo "It couldn't detect LiME" >> log.txt
-		fi
-	fi
 	echo "" >> log.txt
+
 }

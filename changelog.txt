@@ -1,3 +1,8 @@
+v1.1.2.1
+
+Made some fixes and improves on the code
+Fixed some errors that could provoke false positives in evidence's comparisions
+
 v1.1.2
 
 Translated to English
@@ -70,7 +75,7 @@ Added logs collect of:
 
 Erased collect of 'ip a' and dmesg
 Added an option for compare evidences
-Added the possibility of execute Linux's Doctor without menusdo
+Added the possibility of execute Linux's Doctor without a menu
 Added the possibility of send evidences to FTP/Telegram
 Now Linux's Doctor create a file about the system and the analysis made
 Now more information is stored on log.txt
