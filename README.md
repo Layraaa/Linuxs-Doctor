@@ -1,7 +1,7 @@
 # Linux's Doctor v1.1.2.1
 Linux's Doctor is a forensic analysis tool. With this tool you will be able to collect sensitive data from the system and make a comparison with previous data to observe what has happened in cases of disaster, or collect data to analyze it later
 
-![Linux's-Doctor](https://user-images.githubusercontent.com/107069518/212938886-7455b32c-4a91-4759-a305-7729205a08d9.png)
+![Linux's-Doctor](https://user-images.githubusercontent.com/107069518/213184100-220586df-9769-4eb6-813c-c7d4cdb4417f.png)
 
 ## It has been tested on:
 - Debian
