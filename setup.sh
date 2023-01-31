@@ -143,7 +143,7 @@ git clone https://github.com/504ensicsLabs/LiME >> log.txt 2>&1
 if [ -d LiME ]
 then
 	{
-		cd LiME/src/ || make || cd .. || cd ..
+		cd LiME/src/ && make && cd .. && cd ..
 	} >> log.txt 2>&1
 	echo "${white}[${green}!${white}] ${lightblue}LiME was installed correctly!"
 else
