@@ -106,7 +106,7 @@ function reportetelegram (){
             read -r -p "${lightblue}Telegram user ID (Tou can get it on https://telegram.me/userinfobot): ${white}" telegramid
             if [ "$telegramid" != "" ]
             then
-                telegram="S"
+                telegram="Y"
                 break
             else
                 continue
@@ -139,7 +139,7 @@ function reportetelegram (){
             read -r -p "${green}[Y/N] ${white}" comptelegram
             if [[ $comptelegram == "Y" ]] || [[ $comptelegram == "y" ]]
             then
-                telegram="S"
+                telegram="Y"
                 break
             elif [[ $comptelegram == "N" ]] || [[ $comptelegram == "n" ]]
             then
@@ -198,7 +198,7 @@ function reporteftp (){
             read -r -p "${lightblue}FTP Server (192.168.1.100 // example.com): ${white}" serverftp
             if [ "$serverftp" != "" ]
             then
-                ftp="S"
+                ftp="Y"
                 break
             else
                 continue
@@ -236,7 +236,7 @@ function reporteftp (){
             
             if [[ $compftp == "Y" ]] || [[ $compftp == "y" ]]
             then
-                ftp="S"
+                ftp="Y"
                 break
             elif [[ $compftp == "N" ]] || [[ $compftp == "n" ]]
             then
