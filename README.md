@@ -7,7 +7,7 @@
   <br>
 </h1>
 
-<h4 align="center">Linux's Doctor is a monitoring and forensic analysis tool :mag:</h4>
+<h4 align="center">Linux's Doctor is a monitoring, system data collection and forensic analysis tool :mag:</h4>
 
 <p align="center">
   <a href="#descrition">Description</a> •
