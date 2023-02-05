@@ -8,7 +8,7 @@ Linux's Doctor options:
 	- Exit
 
 Linux's Doctor need these files for it could work:
-	- linuxs-doctor.sh
+	- linuxsdoctor.sh
 	- analysis.sh
 	- comparision.sh
 	- sendreport.sh
@@ -40,8 +40,8 @@ Linux's Doctor generate these files:
 		- init.d: Contains all the inicializations' file services on the system
 		- cron.d: Contains a list with cron jobs for be read for cron service
 		- cron.hourly: Contains the scripts that cron execute each hour
-		- cron.dialy: Contains the scripts that cron execute each day
-		- cron.weekely: Contains the scripts that cron execute each week
+		- cron.daily: Contains the scripts that cron execute each day
+		- cron.weekly: Contains the scripts that cron execute each week
 		- cron.monthly: Contains the scripts that cron execute each month
 		- cmdline.txt: File that contains the parameters that is passed to kernel for system's boot
 		- blkid.txt: File that shows information about devices with availables blocks
@@ -61,12 +61,21 @@ Linux's Doctor generate these files:
 		- machine_id.txt: File that shows machine's ID
 		- product_uuid.txt: File that shows machine's product UUID
 		- resolv.txt: File that shows the DNS resolver
+		- mount.txt: File that shows information about mounted devices
+		- lshw.txt: File that shows information about system's hardware
+		- lsblk.txt: File that shows information about block devices
+		- lspci.txt: File that shows information about PCI devices
+		- lsusb.txt: File that shows information about USB devices
+		- lsscsi.txt: File that shows information about SCSI devices
+		- lscpu.txt: File that shows information about CPU
+		- dmidecode.txt: File that shows information about system's hardware
 	- Network configuration:
 		- nmcli.txt: File that shows information about current network configuration
 		- netstat.txt: File that shows information about system's connections
 		- dig.txt: File that shows information about who replys DNS queries
 		- route.txt: File that shows information about system's routing tables
 		- arp.txt: File that shows information about system's ARP tables
+		- ethtool: File that shows information about system's interfaces
 	- System's services:
 		- iptables.txt: File that shows information about iptables service and their configuration
 		- firewalld.txt: File that shows information about firewalld service and their configuration
@@ -87,7 +96,7 @@ Linux's Doctor generate these files:
 		- boot.log*: System's boot logs
 		- kern.log*: System's kernel logs
 		- logfile_auth_log.txt, logfile_dpkg_log.txt, logfile_syslog.txt, logfile_boot_log.txt, logfile_kern_log.txt: A file with all logs content
-	- Service's logs:
+	- Services' logs:
 		- firewalld.txt: Firewalld service's logs
 		- ufw*: Ufw service's logs
 		- vsftpd.txt: Vsftpd service's logs
@@ -96,9 +105,9 @@ Linux's Doctor generate these files:
 		- apache2/error.log*: Apache2 service's logs  (errors)
 		- apache2/access.log*: Apache2 service's logs (access)
 		- mariadb.txt: Mariadb service's logs
-		- squid/error.log.txt: Squid service's logs (errors)
-		- squid/access.log.txt: Squid service's logs (access)
-		- logfile_ufw.txt, logfile_log.smbd.txt, logfile_log.nmbd.txt, apache2/logfile_error.log.txt, apache2/logfile_access.log.txt: A file with all logs content
+		- squid/error_log.txt: Squid service's logs (errors)
+		- squid/access_log.txt: Squid service's logs (access)
+		- logfile_ufw.txt, logfile_log.smbd.txt, logfile_log.nmbd.txt, apache2/logfile_error_log.txt, apache2/logfile_access_log.txt: A file with all logs content
 	- Dump RAM
 	- Dynamic data
 	- analysis.txt: Contains information about the analysis and the system

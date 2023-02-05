@@ -1,0 +1,109 @@
+v1.2
+
+You can edit file.conf with Linux's Doctor Setup
+Now in file.conf you can configurate which data you want get from the system, and if you want delete evidences from the system after the analysis or keep the last ones for automatize evidences' comparisions. You can't automatize connections with file.conf
+Now you can generate analysis notification to DB server/Telegram (only in terminal mode)
+Now you can generate HTML reports and send them to a web server throught FTP (you can send them only in terminal mode)
+Now you can automatize connections to FTP server/DB server/Telegram keeping your credentials encrypted in system (only in terminal mode)
+Now you can type in terminal "linuxsdoctor" for execute Linux's Doctor
+Now you can update Linux's Doctor and dependences throught setup.sh
+Now you can unistall Linux's Doctor throught setup.sh (please don't do it :/)
+Now there is a log for setup.sh and another log for Linux's Doctor, instead one for all
+Added starting date, ending date and hostname on analysis.txt
+Added more information on help message
+Now it collect more dynamic data
+Added data collect of:
+ - ethtool
+ - mount
+ - lshw
+ - lsblk
+ - lspci
+ - lsusb
+ - lsscsi -lswP
+ - lscpu
+ - dmidecode
+
+v1.1.2.1
+
+Made some fixes and improves on the code
+Fixed some errors that could provoke false positives in evidence's comparisions
+
+v1.1.2
+
+Translated to English
+Added SHA512 and MD5 files signatures
+Made some fixes and improves on the code
+Added data collect of:
+ - uname -a
+ - uname -r
+
+v1.1.1
+
+Added dynamic data collect
+Added data collect of:
+ - /etc/selinux/config
+ - /etc/selinux/semanage.conf
+ - /etc/sestatus.conf
+ - /etc/hosts.allow
+ - /etc/hosts.deny
+ - /etc/rsyslog.conf
+ - /proc/devices
+
+v1.1
+
+Added data collect of:
+ - Iptables
+ - Firewalld
+ - UFW
+ - DHCP
+ - DNS
+ - FTP (vsftpd)
+ - SMB
+ - Apache
+ - MariaDB
+ - Squid
+ - SSH
+ - PHP
+ - /etc/network/interfaces
+ - lspci -vvv
+ - fdisk -l
+ - set
+ - /etc/machine-id
+ - /sys/class/dmi/id/product_uuid
+ - /etc/resolv.conf
+ - crontab -l
+ - blkid
+ - /etc/profile
+ - /etc/hosts
+ - /etc/fstab
+ - /etc/mtab
+ - /etc/group
+ - /proc/cmdline
+ - /etc/rc*.d/
+ - /etc/init.d/
+ - /etc/cron.d/
+ - /etc/cron.hourly/
+ - /etc/cron.daily/
+ - /etc/cron.weekly/
+ - /etc/cron.monthly/
+
+
+Added logs collect of:
+ - Firewalld
+ - UFW
+ - FTP (vsftpd)
+ - SMBD
+ - NMBD
+ - Apache
+ - MariaDB
+ - Squid
+
+Erased collect of 'ip a' and dmesg
+Added an option for compare evidences
+Added the possibility of execute Linux's Doctor without a menu
+Added the possibility of send evidences to FTP/Telegram
+Now Linux's Doctor create a file about the system and the analysis made
+Now more information is stored on log.txt
+Fixed some errors that could provoke false positives in evidence's comparisions
+
+v1.0
