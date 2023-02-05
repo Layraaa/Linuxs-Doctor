@@ -10,7 +10,7 @@
 <h4 align="center">Linux's Doctor is a monitoring, system data collection and forensic analysis tool :mag:</h4>
 
 <p align="center">
-  <a href="#descrition">Description</a> •
+  <a href="#description">Description</a> •
   <a href="#key-features">Key Features</a> •
   <a href="#download-and-install">Download and Install</a> •
   <a href="#how-to-use">How to use</a>
