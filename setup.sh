@@ -176,8 +176,8 @@ do
 							exit
 						fi
 
-						# Move setup.sh to /lib/linuxsdoctor
-						mv setup.sh setuplog.txt /lib/linuxsdoctor
+						# Move data to /lib/linuxsdoctor
+						mv setup.sh setuplog.txt LICENSE README.md /lib/linuxsdoctor
 
 						# Create link
 						ln -s /lib/linuxsdoctor/linuxsdoctor.sh /usr/bin/linuxsdoctor
@@ -274,8 +274,8 @@ do
 							exit
 						fi
 
-						# Move setup.sh to /lib/linuxsdoctor
-						mv setup.sh setuplog.txt /lib/linuxsdoctor
+						# Move data to /lib/linuxsdoctor
+						mv setup.sh setuplog.txt LICENSE README.md /lib/linuxsdoctor
 
 						# Create link
 						ln -s /lib/linuxsdoctor/linuxsdoctor.sh /usr/bin/linuxsdoctor
@@ -371,8 +371,8 @@ do
 							exit
 						fi
 
-						# Move setup.sh to /lib/linuxsdoctor
-						mv setup.sh setuplog.txt /lib/linuxsdoctor
+						# Move data to /lib/linuxsdoctor
+						mv setup.sh setuplog.txt LICENSE README.md /lib/linuxsdoctor
 
 						# Create link
 						ln -s /lib/linuxsdoctor/linuxsdoctor.sh /usr/bin/linuxsdoctor
@@ -469,8 +469,8 @@ do
 							exit
 						fi
 
-						# Move setup.sh to /lib/linuxsdoctor
-						mv setup.sh setuplog.txt /lib/linuxsdoctor
+						# Move data to /lib/linuxsdoctor
+						mv setup.sh setuplog.txt LICENSE README.md /lib/linuxsdoctor
 
 						# Create link
 						ln -s /lib/linuxsdoctor/linuxsdoctor.sh /usr/bin/linuxsdoctor
@@ -2841,7 +2841,7 @@ do
 				{
 					rm -rf /usr/bin/linuxsdoctor
 					mv linuxsdoctor/* /lib/linuxsdoctor
-					mv setup.sh /lib/linuxsdoctor
+					mv setup.sh LICENSE README.md /lib/linuxsdoctor
 					ln /lib/linuxsdoctor/linuxsdoctor.sh /usr/bin/linuxsdoctor
 					chmod 700 /usr/bin/linuxsdoctor
 				} >> $setuplog 2>&1
