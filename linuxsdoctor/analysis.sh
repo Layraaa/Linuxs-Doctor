@@ -147,18 +147,18 @@ function getdataDebian (){
 		for i in /proc/[0-9]*
 		do
 			{
-				mkdir "$datapath"/dynamic-data/proc/"$i"
-				cat "$i"/cgroup >> "$datapath"/dynamic-data/proc/"$i"/cgroup.txt
-				cat "$i"/cmdline >> "$datapath"/dynamic-data/proc/"$i"/cmdline.txt
-				cat "$i"/comm >> "$datapath"/dynamic-data/proc/"$i"/comm.txt
-				cat "$i"/environ >> "$datapath"/dynamic-data/proc/"$i"/environ.txt
-				cat "$i"/io >> "$datapath"/dynamic-data/proc/"$i"/io.txt
-				cat "$i"/limits >> "$datapath"/dynamic-data/proc/"$i"/limits.txt
-				cat "$i"/maps >> "$datapath"/dynamic-data/proc/"$i"/maps.txt
-				cat "$i"/mountinfo >> "$datapath"/dynamic-data/proc/"$i"/mountinfo.txt
-				cat "$i"/numa_maps >> "$datapath"/dynamic-data/proc/"$i"/numa_maps.txt
-				cat "$i"/sched >> "$datapath"/dynamic-data/proc/"$i"/sched.txt
-				cat "$i"/status >> "$datapath"/dynamic-data/proc/"$i"/status.txt
+				mkdir "$datapath"/dynamic-data"$i"
+				cat "$i"/cgroup >> "$datapath"/dynamic-data"$i"/cgroup.txt
+				cat "$i"/cmdline >> "$datapath"/dynamic-data"$i"/cmdline.txt
+				cat "$i"/comm >> "$datapath"/dynamic-data"$i"/comm.txt
+				cat "$i"/environ >> "$datapath"/dynamic-data"$i"/environ.txt
+				cat "$i"/io >> "$datapath"/dynamic-data"$i"/io.txt
+				cat "$i"/limits >> "$datapath"/dynamic-data"$i"/limits.txt
+				cat "$i"/maps >> "$datapath"/dynamic-data"$i"/maps.txt
+				cat "$i"/mountinfo >> "$datapath"/dynamic-data"$i"/mountinfo.txt
+				cat "$i"/numa_maps >> "$datapath"/dynamic-data"$i"/numa_maps.txt
+				cat "$i"/sched >> "$datapath"/dynamic-data"$i"/sched.txt
+				cat "$i"/status >> "$datapath"/dynamic-data"$i"/status.txt
 			} 2>> /lib/linuxsdoctor/log.txt
 		done
 
@@ -795,18 +795,18 @@ function getdataCentOS (){
 		for i in /proc/[0-9]*
 		do
 			{
-				mkdir "$datapath"/dynamic-data/proc/"$i"
-				cat "$i"/cgroup >> "$datapath"/dynamic-data/proc/"$i"/cgroup.txt
-				cat "$i"/cmdline >> "$datapath"/dynamic-data/proc/"$i"/cmdline.txt
-				cat "$i"/comm >> "$datapath"/dynamic-data/proc/"$i"/comm.txt
-				cat "$i"/environ >> "$datapath"/dynamic-data/proc/"$i"/environ.txt
-				cat "$i"/io >> "$datapath"/dynamic-data/proc/"$i"/io.txt
-				cat "$i"/limits >> "$datapath"/dynamic-data/proc/"$i"/limits.txt
-				cat "$i"/maps >> "$datapath"/dynamic-data/proc/"$i"/maps.txt
-				cat "$i"/mountinfo >> "$datapath"/dynamic-data/proc/"$i"/mountinfo.txt
-				cat "$i"/numa_maps >> "$datapath"/dynamic-data/proc/"$i"/numa_maps.txt
-				cat "$i"/sched >> "$datapath"/dynamic-data/proc/"$i"/sched.txt
-				cat "$i"/status >> "$datapath"/dynamic-data/proc/"$i"/status.txt
+				mkdir "$datapath"/dynamic-data"$i"
+				cat "$i"/cgroup >> "$datapath"/dynamic-data"$i"/cgroup.txt
+				cat "$i"/cmdline >> "$datapath"/dynamic-data"$i"/cmdline.txt
+				cat "$i"/comm >> "$datapath"/dynamic-data"$i"/comm.txt
+				cat "$i"/environ >> "$datapath"/dynamic-data"$i"/environ.txt
+				cat "$i"/io >> "$datapath"/dynamic-data"$i"/io.txt
+				cat "$i"/limits >> "$datapath"/dynamic-data"$i"/limits.txt
+				cat "$i"/maps >> "$datapath"/dynamic-data"$i"/maps.txt
+				cat "$i"/mountinfo >> "$datapath"/dynamic-data"$i"/mountinfo.txt
+				cat "$i"/numa_maps >> "$datapath"/dynamic-data"$i"/numa_maps.txt
+				cat "$i"/sched >> "$datapath"/dynamic-data"$i"/sched.txt
+				cat "$i"/status >> "$datapath"/dynamic-data"$i"/status.txt
 			} 2>> /lib/linuxsdoctor/log.txt
 		done
 

