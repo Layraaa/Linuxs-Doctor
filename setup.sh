@@ -693,6 +693,7 @@ do
 							read -r -p "It has been detected a configurated file. Do you want delete it and create a new one or exit? ${green}[Y/N]${white} --> " checkconnectionfile
 							if [[ $checkconnectionfile == "Y" ]] || [[ $checkconnectionfile == "y" ]] # Delete old file and create new file
 							then
+								shred -zu -n32 /lib/linuxsdoctor/.evidencesftp
 								break
 							elif [[ $checkconnectionfile == "N" ]] || [[ $checkconnectionfile == "n" ]] # Exit
 							then
@@ -894,6 +895,7 @@ do
 							read -r -p "It has been detected a configurated file. Do you want delete it and create a new one or exit? ${green}[Y/N]${white} --> " checkconnectionfile
 							if [[ $checkconnectionfile == "Y" ]] || [[ $checkconnectionfile == "y" ]] # Delete old file and create new file
 							then
+								shred -zu -n32 /lib/linuxsdoctor/.evidencesftp
 								break
 							elif [[ $checkconnectionfile == "N" ]] || [[ $checkconnectionfile == "n" ]] # Exit
 							then
@@ -1112,6 +1114,7 @@ do
 							read -r -p "It has been detected a configurated file. Do you want delete it and create a new one or exit? ${green}[Y/N]${white} --> " checkconnectionfile
 							if [[ $checkconnectionfile == "Y" ]] || [[ $checkconnectionfile == "y" ]] # Delete old file and create new file
 							then
+								shred -zu -n32 /lib/linuxsdoctor/.evidencestelegram
 								break
 							elif [[ $checkconnectionfile == "N" ]] || [[ $checkconnectionfile == "n" ]] # Exit
 							then
@@ -1291,6 +1294,7 @@ do
 							read -r -p "It has been detected a configurated file. Do you want delete it and create a new one or exit? ${green}[Y/N]${white} --> " checkconnectionfile
 							if [[ $checkconnectionfile == "Y" ]] || [[ $checkconnectionfile == "y" ]] # Delete old file and create new file
 							then
+								shred -zu -n32 /lib/linuxsdoctor/.evidencestelegram
 								break
 							elif [[ $checkconnectionfile == "N" ]] || [[ $checkconnectionfile == "n" ]] # Exit
 							then
@@ -1486,6 +1490,7 @@ do
 							read -r -p "It has been detected a configurated file. Do you want delete it and create a new one or exit? ${green}[Y/N]${white} --> " checkconnectionfile
 							if [[ $checkconnectionfile == "Y" ]] || [[ $checkconnectionfile == "y" ]] # Delete old file and create new file
 							then
+								shred -zu -n32 /lib/linuxsdoctor/.htmlftp
 								break
 							elif [[ $checkconnectionfile == "N" ]] || [[ $checkconnectionfile == "n" ]] # Exit
 							then
@@ -1687,6 +1692,7 @@ do
 							read -r -p "It has been detected a configurated file. Do you want delete it and create a new one or exit? ${green}[Y/N]${white} --> " checkconnectionfile
 							if [[ $checkconnectionfile == "Y" ]] || [[ $checkconnectionfile == "y" ]] # Delete old file and create new file
 							then
+								shred -zu -n32 /lib/linuxsdoctor/.htmlftp
 								break
 							elif [[ $checkconnectionfile == "N" ]] || [[ $checkconnectionfile == "n" ]] # Exit
 							then
@@ -1905,6 +1911,7 @@ do
 							read -r -p "It has been detected a configurated file. Do you want delete it and create a new one or exit? ${green}[Y/N]${white} --> " checkconnectionfile
 							if [[ $checkconnectionfile == "Y" ]] || [[ $checkconnectionfile == "y" ]] # Delete old file and create new file
 							then
+								shred -zu -n32 /lib/linuxsdoctor/.notificationdb
 								break
 							elif [[ $checkconnectionfile == "N" ]] || [[ $checkconnectionfile == "n" ]] # Exit
 							then
@@ -2134,6 +2141,7 @@ do
 							read -r -p "It has been detected a configurated file. Do you want delete it and create a new one or exit? ${green}[Y/N]${white} --> " checkconnectionfile
 							if [[ $checkconnectionfile == "Y" ]] || [[ $checkconnectionfile == "y" ]] # Delete old file and create new file
 							then
+								shred -zu -n32 /lib/linuxsdoctor/.notificationdb
 								break
 							elif [[ $checkconnectionfile == "N" ]] || [[ $checkconnectionfile == "n" ]] # Exit
 							then
@@ -2380,6 +2388,7 @@ do
 							read -r -p "It has been detected a configurated file. Do you want delete it and create a new one or exit? ${green}[Y/N]${white} --> " checkconnectionfile
 							if [[ $checkconnectionfile == "Y" ]] || [[ $checkconnectionfile == "y" ]] # Delete old file and create new file
 							then
+								shred -zu -n32 /lib/linuxsdoctor/.notificationtelegram
 								break
 							elif [[ $checkconnectionfile == "N" ]] || [[ $checkconnectionfile == "n" ]] # Exit
 							then
@@ -2558,6 +2567,7 @@ do
 							read -r -p "It has been detected a configurated file. Do you want delete it and create a new one or exit? ${green}[Y/N]${white} --> " checkconnectionfile
 							if [[ $checkconnectionfile == "Y" ]] || [[ $checkconnectionfile == "y" ]] # Delete old file and create new file
 							then
+								shred -zu -n32 /lib/linuxsdoctor/.notificationtelegram
 								break
 							elif [[ $checkconnectionfile == "N" ]] || [[ $checkconnectionfile == "n" ]] # Exit
 							then
