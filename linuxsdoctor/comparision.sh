@@ -2908,12 +2908,12 @@ function checkcomparisions (){
 	then
 		while true
 		do
-			read -r -p "${lightblue}It couldn't detected analysis.txt in any of the specified paths. It couldn't be checked if it could be possible compare evidences in a safe way. ¿Do you want continue?${green} [Y/N]${white} " checkanalysis
+			read -r -p "${lightblue}It couldn't detected analysis.txt in any of the specified paths. It couldn't be checked if it could be possible compare evidences in a safe way. Do you want continue?${green} [Y/N]${white} " checkanalysis
 			if [[ $checkanalysiscomparision == "Y" ]] || [[ $checkanalysiscomparision == "y" ]]
 			then
 				while true
 				do
-					read -r -p "${lightblue}¿What is the operating system of the evidences that you want compare?${green} [Debain/Ubuntu/Kali/CentOS]${white} " checkanalysis
+					read -r -p "${lightblue}What is the operating system of the evidences that you want compare?${green} [Debain/Ubuntu/Kali/CentOS]${white} " checkanalysis
 					case $checkanalysis in
 					Debian | debian | Ubuntu | ubuntu | Kali | kali)
 						comparisions_os="Debian"
@@ -2943,12 +2943,12 @@ function checkcomparisions (){
 		then
 			while true
 			do
-				read -r -p "${lightblue}It has been detected different OS${green} ($(sed '4q;d' "$firstpath"/analysis.txt | awk '{ gsub(/OS: /,""); print }') / $(sed '4q;d' "$datapath"/analysis.txt | awk '{ gsub(/OS: /,""); print }')).${lightblue} Check that you want compare the evidences specified. ¿Do you want continue?${green} [Y/N]${white} " checkanalysis
+				read -r -p "${lightblue}It has been detected different OS${green} ($(sed '4q;d' "$firstpath"/analysis.txt | awk '{ gsub(/OS: /,""); print }') / $(sed '4q;d' "$datapath"/analysis.txt | awk '{ gsub(/OS: /,""); print }')).${lightblue} Check that you want compare the evidences specified. Do you want continue?${green} [Y/N]${white} " checkanalysis
 				if [[ $checkanalysis == "Y" ]] || [[ $checkanalysis == "y" ]]
 				then
 					while true
 					do
-						read -r -p "${lightblue}¿What is the operating system of the evidences that you want compare?${green} [Debain/Ubuntu/Kali/CentOS]${white} " checkanalysis
+						read -r -p "${lightblue}What is the operating system of the evidences that you want compare?${green} [Debain/Ubuntu/Kali/CentOS]${white} " checkanalysis
 						case $checkanalysis in
 						Debian | debian | Ubuntu | ubuntu | Kali | kali)
 							comparisions_os="Debian"
@@ -2977,7 +2977,7 @@ function checkcomparisions (){
 		then
 			while true
 			do
-				read -r -p "${lightblue}It has been detected different versions of Linux's Doctor${green} ($(sed '9q;d' "$firstpath"/analysis.txt | awk '{ gsub(/Tool version: /,""); print }') / $(sed '9q;d' "$datapath"/analysis.txt | awk '{ gsub(/Tool version: /,""); print }')).${lightblue} This can provoke that it couldn't be able to do all the comparisions that is expected. ¿Do you want continue?${green} [Y/N]${white} " checkanalysis
+				read -r -p "${lightblue}It has been detected different versions of Linux's Doctor${green} ($(sed '9q;d' "$firstpath"/analysis.txt | awk '{ gsub(/Tool version: /,""); print }') / $(sed '9q;d' "$datapath"/analysis.txt | awk '{ gsub(/Tool version: /,""); print }')).${lightblue} This can provoke that it couldn't be able to do all the comparisions that is expected. Do you want continue?${green} [Y/N]${white} " checkanalysis
 				if [[ $checkanalysis == "Y" ]] || [[ $checkanalysis == "y" ]]
 				then
 					break
@@ -2998,7 +2998,7 @@ function checkcomparisions (){
 			then
 				while true
 				do
-					read -r -p "${lightblue}We detected an unsupported OS${green} ($(sed '4q;d' "$firstpath"/analysis.txt | awk '{ gsub(/OS: /,""); print }')).${lightblue} ¿Do you want continue?${green} [Y/N]${white} " checkanalysis
+					read -r -p "${lightblue}We detected an unsupported OS${green} ($(sed '4q;d' "$firstpath"/analysis.txt | awk '{ gsub(/OS: /,""); print }')).${lightblue} Do you want continue?${green} [Y/N]${white} " checkanalysis
 					if [[ $checkanalysis == "Y" ]] || [[ $checkanalysis == "y" ]]
 					then
 						break

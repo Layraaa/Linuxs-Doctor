@@ -216,7 +216,7 @@ function menureport (){
     while true
     do
         echo ""
-        echo "${lightblue}¿Do you want send evidences to any extern medium?${white}"
+        echo "${lightblue}Do you want send evidences to any extern medium?${white}"
         multiselect resultoptions "$OPTIONS_STRING"
 
         for i in "${!resultoptions[@]}"

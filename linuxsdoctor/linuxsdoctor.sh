@@ -568,7 +568,7 @@ classic) # Classic Mode
 		echo "${purple}4) ${lightblue}Show information of the script"
 		echo "${purple}5) ${lightblue}Exit"
 		echo ""
-		read -r -p "${lightblue}¿What do you want to do? --> ${white}" menu
+		read -r -p "${lightblue}What do you want to do? --> ${white}" menu
 
 		# Menu's options
 		case $menu in
@@ -577,7 +577,7 @@ classic) # Classic Mode
 			# Ask for dump RAM memory
 			while true
 			do
-				read -r -p "${lightblue}¿Do you want dump RAM? ${red}(The file's weight will be same as the ammount of RAM installed on the system)${green} [Y/N]${white} --> " ram
+				read -r -p "${lightblue}Do you want dump RAM? ${red}(The file's weight will be same as the ammount of RAM installed on the system)${green} [Y/N]${white} --> " ram
 				if [[ $ram == "Y" ]] || [[ $ram == "y" ]] || [[ $ram == "N" ]] || [[ $ram == "n" ]]
 				then
 					break
@@ -656,13 +656,13 @@ classic) # Classic Mode
 			# Check if the user want continue with the execution's script
 			while true
 			do
-				read -r -p "${lightblue}¿Do you want continue (You must have two different folders with evidences that you want compare)?${green} [Y/N]${white} --> " chooseyn
+				read -r -p "${lightblue}Do you want continue (You must have two different folders with evidences that you want compare)?${green} [Y/N]${white} --> " chooseyn
 				if [[ $chooseyn == "Y" ]] || [[ $chooseyn == "y" ]]
 				then
 					# Ask for dump RAM memory
 					while true
 					do
-						read -r -p "${lightblue}¿Do you want dump RAM? ${red}(The file's weight will be same as the ammount of RAM installed on the system)${green} [Y/N]${white} --> " ram
+						read -r -p "${lightblue}Do you want dump RAM? ${red}(The file's weight will be same as the ammount of RAM installed on the system)${green} [Y/N]${white} --> " ram
 						if [[ $ram == "Y" ]] || [[ $ram == "y" ]] || [[ $ram == "N" ]] || [[ $ram == "n" ]]
 						then
 							break
@@ -780,7 +780,7 @@ classic) # Classic Mode
 			# Check if the user want continue with the execution's script
 			while true
 			do
-				read -r -p "${lightblue}¿Do you want continue (You must have two different folders with evidences that you want compare)?${green} [Y/N]${white} --> " chooseyn
+				read -r -p "${lightblue}Do you want continue (You must have two different folders with evidences that you want compare)?${green} [Y/N]${white} --> " chooseyn
 				if [[ $chooseyn == "Y" ]] || [[ $chooseyn == "y" ]]
 				then
 					# Ask for the path where it's the first report
