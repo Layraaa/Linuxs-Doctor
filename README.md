@@ -13,7 +13,8 @@
   <a href="#description">Description</a> •
   <a href="#key-features">Key Features</a> •
   <a href="#download-and-install">Download and Install</a> •
-  <a href="#how-to-use">How to use</a>
+  <a href="#how-to-use">How to use</a> •
+  <a href="#more-information">More information</a>
 </p>
 
 <div align="center">
@@ -46,7 +47,6 @@ Linux's Doctor is a monitoring and forensic analysis tool. With this tool you wi
 To clone this tool, you'll need [Git](https://git-scm.com) installed. From your command line:
 
 ```bash
-
 # git clone https://github.com/Layraaa/Linuxs-Doctor
 # cd Linuxs-Doctor
 # bash setup.sh
@@ -61,6 +61,16 @@ To clone this tool, you'll need [Git](https://git-scm.com) installed. From your 
 First of all it's recommended that you check the config file and configurate throught setup as you want. Linux's Doctor has two modes:
 * Classic: Linux's Doctor will ask you the parameters that it needs for start
 * Terminal: You need to specify the parameters in terminal. It's recommended this option than classic because you are able to use all features and you can automatize with cronjobs data collection and comparisions
+
+## More information
+
+This project is open-source, so feel free to make modifications, create your own versions based in Linux's Doctor and share them. I would be greatful if you add this header in your own versions/modifications:
+
+```bash
+# Based on Linux's Doctor - By @Layraaa and @Japinper
+# https://github.com/Layraaa/Linuxs-Doctor
+```
+If you find a bug or something, it would be nice if you contact with me
 
 ---
 
