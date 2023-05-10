@@ -63,7 +63,7 @@ function getdataDebian (){
 			actualdirectory="$(pwd)"
 			echo "Dumping RAM" >> /lib/linuxsdoctor/log.txt
 			cd /lib/linuxsdoctor/LiME/src/
-			insmod lime-"$(uname -r)".ko "path=$datapath/volcado_memoria format=raw"
+			insmod lime-"$(uname -r)".ko "path=$datapath/volcado_memoria.mem format=raw"
 			rmmod lime
 			cd "$actualdirectory"
 			echo "${white}[${green}!${white}]${lightblue} Done!"
@@ -717,7 +717,7 @@ function getdataCentOS (){
 			actualdirectory="$(pwd)"
 			echo "Dumping RAM" >> /lib/linuxsdoctor/log.txt
 			cd /lib/linuxsdoctor/LiME/src/
-			insmod lime-"$(uname -r)".ko "path=$datapath/volcado_memoria format=raw"
+			insmod lime-"$(uname -r)".ko "path=$datapath/volcado_memoria.mem format=raw"
 			rmmod lime
 			cd "$actualdirectory"
 			echo "${white}[${green}!${white}]${lightblue} Done!"
