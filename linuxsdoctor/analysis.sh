@@ -134,7 +134,7 @@ function getdataDebian (){
 			} >> "$datapath"/dynamic-data/processes.txt 2>> /dev/null
 		done
 
-		for i in $(systemctl --type=service | sed 's/^.//' | awk '{ print $1 }' | head -n -7 | tail -n +2)
+		for i in $(systemctl --type=service | sed 's/^.//' | awk '{ print $1 }' | grep '.service')
 		do
 			{
 				systemctl status "$i"
